@@ -174,7 +174,7 @@
 <div class="form-wrap">
   <div class="progress-track"><div class="progress-fill" id="pf"></div></div>
 
-  <form id="form" novalidate>
+  <form id="form" action="https://formspree.io/f/mjgawzkr" method="POST" novalidate>
 
     <!-- Personal Info -->
     <div class="section">
@@ -452,12 +452,33 @@ function updateProgress() {
 
 document.querySelectorAll('input,textarea').forEach(el => el.addEventListener('input', updateProgress));
 
-document.getElementById('form').addEventListener('submit', e => {
+document.getElementById('form').addEventListener('submit', async e => {
   e.preventDefault();
-  document.getElementById('form').style.display = 'none';
-  document.getElementById('success').classList.add('show');
-  document.getElementById('pf').style.width = '100%';
-  window.scrollTo({top:0,behavior:'smooth'});
+  const form = document.getElementById('form');
+  const btn = form.querySelector('.btn');
+  btn.textContent = 'Submitting...';
+  btn.disabled = true;
+  try {
+    const response = await fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    });
+    if(response.ok) {
+      form.style.display = 'none';
+      document.getElementById('success').classList.add('show');
+      document.getElementById('pf').style.width = '100%';
+      window.scrollTo({top:0,behavior:'smooth'});
+    } else {
+      btn.textContent = 'Submit Assessment & Request Slot ✦';
+      btn.disabled = false;
+      alert('Something went wrong. Please try again.');
+    }
+  } catch(err) {
+    btn.textContent = 'Submit Assessment & Request Slot ✦';
+    btn.disabled = false;
+    alert('Network error. Please check your connection and try again.');
+  }
 });
 </script>
 </body>
