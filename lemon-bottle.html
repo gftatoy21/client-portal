@@ -303,27 +303,33 @@
       <div class="sec-head">
         <div class="sec-icon">📅</div>
         <h2>Preferred Schedule</h2>
-        <span>We'll confirm your slot</span>
+        <span>Saturdays only · 3 slots per day</span>
+      </div>
+      <div style="margin:18px 28px 0;padding:13px 16px;background:rgba(201,168,76,0.07);border:1px solid rgba(201,168,76,0.2);border-radius:10px;font-size:12.5px;color:rgba(255,248,232,0.55);font-weight:300;line-height:1.6;">
+        📅 <strong style="color:rgba(201,168,76,0.8);">Sessions are available Saturdays only, 9:00 AM – 5:00 PM.</strong><br/>
+        We accept a maximum of 3 clients per Saturday. Slots are confirmed on a first-come, first-served basis.
       </div>
       <div class="schedule-grid">
-        <div class="field">
-          <label>Preferred Date <span class="req">*</span></label>
-          <input type="date" id="datePick"/>
-        </div>
-        <div class="field">
-          <label>Preferred Time Slot <span class="req">*</span></label>
-          <div class="time-slots" id="timeSlots">
-            <div class="slot" onclick="pickSlot(this)">9:00 AM</div>
-            <div class="slot" onclick="pickSlot(this)">10:30 AM</div>
-            <div class="slot" onclick="pickSlot(this)">12:00 PM</div>
-            <div class="slot" onclick="pickSlot(this)">1:30 PM</div>
-            <div class="slot" onclick="pickSlot(this)">3:00 PM</div>
-            <div class="slot" onclick="pickSlot(this)">4:30 PM</div>
-          </div>
+        <div class="field full">
+          <label>Select a Saturday <span class="req">*</span></label>
+          <input type="date" id="datePick" onchange="validateSaturday(this)"/>
+          <div id="dateError" style="display:none;font-size:11.5px;color:#E87A8A;margin-top:5px;">⚠️ Please select a Saturday only.</div>
         </div>
         <div class="field full">
-          <label>Alternative Date <span class="hint">in case first is unavailable</span></label>
-          <input type="date"/>
+          <label>Preferred Time Slot <span class="req">*</span> <span class="hint">max 3 clients per Saturday</span></label>
+          <div class="time-slots" id="timeSlots" style="grid-template-columns:1fr 1fr 1fr;">
+            <div class="slot" onclick="pickSlot(this)">9:00 AM</div>
+            <div class="slot" onclick="pickSlot(this)">11:00 AM</div>
+            <div class="slot" onclick="pickSlot(this)">1:00 PM</div>
+            <div class="slot" onclick="pickSlot(this)">3:00 PM</div>
+            <div class="slot" onclick="pickSlot(this)">5:00 PM</div>
+          </div>
+          <div style="font-size:11px;color:rgba(255,248,232,0.3);margin-top:8px;font-weight:300;">⏱ Each session is approximately 60–90 minutes.</div>
+        </div>
+        <div class="field full">
+          <label>Alternative Saturday <span class="hint">in case first is unavailable</span></label>
+          <input type="date" id="altDate" onchange="validateSaturday(this)"/>
+          <div id="altDateError" style="display:none;font-size:11.5px;color:#E87A8A;margin-top:5px;">⚠️ Please select a Saturday only.</div>
         </div>
       </div>
     </div>
@@ -381,8 +387,33 @@
 <div style="text-align:center;margin-top:28px;font-size:10px;color:rgba(255,255,255,0.12);font-family:'Jost',sans-serif;letter-spacing:1px;">© Bella's Wellness Hub · All rights reserved</div>
 
 <script>
-// Set min date to today
-document.getElementById('datePick').min = new Date().toISOString().split('T')[0];
+// Set min date to next Saturday
+function getNextSaturday() {
+  const d = new Date();
+  const day = d.getDay();
+  const diff = (6 - day + 7) % 7 || 7;
+  d.setDate(d.getDate() + diff);
+  return d.toISOString().split('T')[0];
+}
+document.getElementById('datePick').min = getNextSaturday();
+document.getElementById('altDate').min = getNextSaturday();
+
+function validateSaturday(input) {
+  const errorId = input.id === 'datePick' ? 'dateError' : 'altDateError';
+  const err = document.getElementById(errorId);
+  if(input.value) {
+    const day = new Date(input.value + 'T00:00:00').getDay();
+    if(day !== 6) {
+      err.style.display = 'block';
+      input.style.borderColor = '#E87A8A';
+      input.value = '';
+    } else {
+      err.style.display = 'none';
+      input.style.borderColor = '';
+    }
+  }
+  updateProgress();
+}
 
 function pick(el, name, val) {
   document.querySelectorAll(`.r-opt`).forEach(o => {
