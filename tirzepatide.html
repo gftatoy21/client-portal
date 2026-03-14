@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Tirzepatide Intake — Bella's Wellness Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --bg:#0D0D12;--surface:rgba(255,255,255,0.04);
+    --border:rgba(255,255,255,0.08);--border-focus:rgba(150,90,255,0.6);
+    --violet:#9B5FF0;--violet-dim:rgba(155,95,240,0.13);
+    --gold:#C9A84C;--text:#F0EBFF;--muted:rgba(255,255,255,0.35);
+    --input-bg:rgba(255,255,255,0.06);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Jost',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding:48px 20px 80px;
+    background-image:radial-gradient(ellipse 70% 50% at 15% 0%,rgba(90,40,180,0.15) 0%,transparent 65%),radial-gradient(ellipse 50% 40% at 85% 100%,rgba(155,95,240,0.08) 0%,transparent 60%);}
+  .back{display:inline-flex;align-items:center;gap:8px;color:var(--muted);font-size:13px;font-weight:300;text-decoration:none;margin-bottom:36px;transition:color 0.2s;}
+  .back:hover{color:var(--text);}
+  .header{text-align:center;margin-bottom:44px;animation:up 0.7s ease both;}
+  .header-tag{display:inline-block;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--violet);border:1px solid rgba(155,95,240,0.3);padding:5px 18px;border-radius:20px;margin-bottom:18px;background:var(--violet-dim);}
+  .header h1{font-family:'Playfair Display',serif;font-size:clamp(30px,6vw,48px);font-weight:400;line-height:1.1;margin-bottom:10px;}
+  .header h1 em{font-style:italic;color:var(--violet);}
+  .header p{font-size:13.5px;color:var(--muted);font-weight:300;line-height:1.7;max-width:500px;margin:0 auto;}
+  .form-wrap{max-width:720px;margin:0 auto;}
+  .progress-track{height:2px;background:rgba(255,255,255,0.06);border-radius:2px;margin-bottom:36px;overflow:hidden;}
+  .progress-fill{height:100%;background:linear-gradient(to right,var(--violet),var(--gold));width:0%;transition:width 0.4s ease;border-radius:2px;}
+  .section{background:var(--surface);border:1px solid var(--border);border-radius:18px;margin-bottom:14px;overflow:hidden;animation:up 0.7s ease both;}
+  .sec-head{padding:18px 28px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:14px;background:rgba(255,255,255,0.02);}
+  .sec-icon{width:34px;height:34px;border-radius:9px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:15px;background:linear-gradient(135deg,rgba(90,40,180,0.5),rgba(155,95,240,0.3));border:1px solid rgba(155,95,240,0.25);}
+  .sec-head h2{font-family:'Playfair Display',serif;font-size:17px;font-weight:400;color:var(--text);}
+  .sec-head span{font-size:11px;color:var(--muted);margin-left:auto;font-weight:300;}
+  .fields{padding:22px 28px;display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .fields.one{grid-template-columns:1fr;}
+  .fields.three{grid-template-columns:1fr 1fr 1fr;}
+  .fields.four{grid-template-columns:1fr 1fr 1fr 1fr;}
+  .field{display:flex;flex-direction:column;gap:7px;}
+  .field.full{grid-column:1/-1;}
+  label{font-size:11px;font-weight:500;color:rgba(255,255,255,0.5);letter-spacing:0.5px;text-transform:uppercase;display:flex;align-items:center;gap:6px;}
+  .req{color:#E87A8A;font-size:13px;line-height:1;}
+  .hint{font-weight:300;font-size:10px;color:var(--muted);margin-left:auto;text-transform:none;letter-spacing:0;}
+  input[type=text],input[type=tel],input[type=number],textarea,select{width:100%;padding:11px 14px;background:var(--input-bg);border:1px solid var(--border);border-radius:9px;font-family:'Jost',sans-serif;font-size:13.5px;font-weight:300;color:var(--text);outline:none;transition:all 0.2s;appearance:none;}
+  input::placeholder,textarea::placeholder{color:rgba(255,255,255,0.18);}
+  input:focus,textarea:focus,select:focus{border-color:var(--border-focus);background:rgba(155,95,240,0.07);box-shadow:0 0 0 3px rgba(155,95,240,0.08);}
+  textarea{resize:vertical;min-height:80px;line-height:1.6;}
+  select option{background:#1A1230;}
+  .meas{display:flex;align-items:center;background:var(--input-bg);border:1px solid var(--border);border-radius:9px;overflow:hidden;transition:all 0.2s;}
+  .meas:focus-within{border-color:var(--border-focus);background:rgba(155,95,240,0.07);box-shadow:0 0 0 3px rgba(155,95,240,0.08);}
+  .meas input{border:none;background:transparent;box-shadow:none;flex:1;padding:11px 12px;}
+  .meas input:focus{border:none;background:transparent;box-shadow:none;}
+  .meas-tag{padding:0 12px;font-size:11px;color:var(--gold);font-weight:500;border-left:1px solid var(--border);white-space:nowrap;}
+  .check-grid{padding:18px 28px;display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+  .check-grid.three{grid-template-columns:1fr 1fr 1fr;}
+  .c-opt{display:flex;align-items:center;gap:10px;padding:10px 13px;border:1px solid var(--border);border-radius:9px;cursor:pointer;transition:all 0.18s;font-size:13px;font-weight:300;color:rgba(255,255,255,0.65);background:var(--input-bg);}
+  .c-opt:hover{border-color:rgba(155,95,240,0.35);background:var(--violet-dim);}
+  .c-opt.sel{border-color:rgba(155,95,240,0.55);background:var(--violet-dim);color:var(--text);}
+  .c-opt input{display:none;}
+  .cbox{width:15px;height:15px;border-radius:4px;border:1.5px solid rgba(255,255,255,0.2);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:9px;transition:all 0.18s;}
+  .c-opt.sel .cbox{border-color:var(--violet);background:var(--violet);color:white;}
+  .radio-row{display:flex;gap:7px;}
+  .r-opt{display:flex;align-items:center;gap:10px;padding:10px 13px;border:1px solid var(--border);border-radius:9px;cursor:pointer;transition:all 0.18s;font-size:13px;font-weight:300;color:rgba(255,255,255,0.65);background:var(--input-bg);flex:1;}
+  .r-opt:hover{border-color:rgba(155,95,240,0.35);background:var(--violet-dim);}
+  .r-opt.sel{border-color:rgba(155,95,240,0.55);background:var(--violet-dim);color:var(--text);}
+  .r-opt input{display:none;}
+  .dot{width:15px;height:15px;border-radius:50%;border:1.5px solid rgba(255,255,255,0.2);flex-shrink:0;transition:all 0.18s;}
+  .r-opt.sel .dot{border-color:var(--violet);background:var(--violet);box-shadow:inset 0 0 0 3px var(--bg);}
+  .warn-box{margin:0 28px 20px;padding:16px 18px;border-radius:10px;}
+  .warn-box.red{background:rgba(232,122,138,0.08);border:1px solid rgba(232,122,138,0.25);}
+  .warn-box.purple{background:rgba(155,95,240,0.07);border:1px solid rgba(155,95,240,0.2);margin-top:20px;}
+  .warn-box h4{font-size:11.5px;font-weight:500;letter-spacing:0.5px;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:6px;}
+  .warn-box.red h4{color:#E87A8A;}
+  .warn-box.purple h4{color:rgba(155,95,240,0.9);}
+  .warn-box ul{list-style:none;display:flex;flex-direction:column;gap:5px;}
+  .warn-box ul li{font-size:12.5px;font-weight:300;color:rgba(255,255,255,0.55);padding-left:14px;position:relative;}
+  .warn-box.red ul li::before{content:'•';position:absolute;left:0;color:#E87A8A;}
+  .warn-box.purple ul li::before{content:'•';position:absolute;left:0;color:var(--violet);}
+  .sub-label{padding:16px 28px 4px;font-size:10px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:rgba(155,95,240,0.55);}
+  .file-zone{border:1px dashed rgba(155,95,240,0.22);border-radius:9px;padding:16px;text-align:center;cursor:pointer;transition:all 0.2s;background:rgba(155,95,240,0.02);position:relative;}
+  .file-zone:hover{border-color:var(--violet);background:var(--violet-dim);}
+  .file-zone input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+  .file-zone .fi{font-size:18px;margin-bottom:3px;}
+  .file-zone p{font-size:11.5px;color:var(--muted);font-weight:300;}
+  .file-zone p strong{color:var(--violet);}
+  .fname{font-size:11px;color:var(--violet);margin-top:5px;font-style:italic;}
+  .submit-area{padding:0 28px 28px;}
+  .btn{width:100%;padding:16px;background:linear-gradient(135deg,#5A28B4,#9B5FF0);color:white;font-family:'Jost',sans-serif;font-size:15px;font-weight:500;border:none;border-radius:12px;cursor:pointer;letter-spacing:0.5px;transition:all 0.25s;position:relative;overflow:hidden;}
+  .btn::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.12),transparent);opacity:0;transition:opacity 0.2s;}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 10px 40px rgba(90,40,180,0.5);}
+  .btn:hover::after{opacity:1;}
+  .privacy{text-align:center;font-size:11px;color:var(--muted);margin-top:14px;line-height:1.6;font-weight:300;}
+  .success{display:none;text-align:center;padding:70px 40px;animation:up 0.5s ease both;}
+  .success.show{display:block;}
+  .s-ring{width:80px;height:80px;border-radius:50%;margin:0 auto 24px;background:linear-gradient(135deg,#5A28B4,#9B5FF0);display:flex;align-items:center;justify-content:center;font-size:32px;}
+  .success h2{font-family:'Playfair Display',serif;font-size:34px;font-weight:400;margin-bottom:12px;}
+  .success p{font-size:14px;color:var(--muted);font-weight:300;line-height:1.7;max-width:420px;margin:0 auto;}
+  @keyframes up{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+  @media(max-width:600px){
+    .fields{grid-template-columns:1fr;padding:16px 18px;}
+    .fields.three,.fields.four{grid-template-columns:1fr 1fr;}
+    .check-grid{grid-template-columns:1fr 1fr;padding:14px 18px;}
+    .check-grid.three{grid-template-columns:1fr 1fr;}
+    .sec-head{padding:14px 18px;}
+    .submit-area{padding:0 18px 22px;}
+    .warn-box{margin-left:18px;margin-right:18px;}
+    .sub-label{padding-left:18px;}
+    .radio-row{flex-direction:column;}
+  }
+</style>
+</head>
+<body>
+
+<div style="max-width:720px;margin:0 auto">
+  <a href="index.html" class="back">← Back to Portal</a>
+</div>
+
+<div class="header">
+  <div style="font-family:'Playfair Display',serif;font-size:clamp(20px,4vw,30px);font-weight:400;color:#F0EBFF;letter-spacing:0.5px;margin-bottom:6px;">
+    Bella's <em style="font-style:italic;color:#9B5FF0;">Wellness</em> Hub
+  </div>
+  <div style="font-size:9px;letter-spacing:3.5px;text-transform:uppercase;color:rgba(155,95,240,0.4);margin-bottom:20px;font-family:'Jost',sans-serif;">✦ Aesthetics & Wellness ✦</div>
+  <div class="header-tag">💉 Weight Management Program</div>
+  <h1>Tirzepatide Program<br/><em>Client Intake Form</em></h1>
+  <p>Please answer all questions honestly and completely. This information is used to assess your eligibility and ensure your safety throughout the program.</p>
+</div>
+
+<div class="form-wrap">
+  <div class="progress-track"><div class="progress-fill" id="pf"></div></div>
+
+  <form id="form" novalidate>
+
+    <!-- 1. PERSONAL INFO -->
+    <div class="section">
+      <div class="sec-head"><div class="sec-icon">👤</div><h2>Personal Information</h2><span>Required</span></div>
+      <div class="fields three">
+        <div class="field"><label>Full Name <span class="req">*</span></label><input type="text" placeholder="Maria Santos"/></div>
+        <div class="field"><label>Age <span class="req">*</span></label><input type="number" placeholder="32" min="18" max="100"/></div>
+        <div class="field"><label>Sex <span class="req">*</span></label>
+          <select><option value="">Select...</option><option>Female</option><option>Male</option><option>Prefer not to say</option></select>
+        </div>
+        <div class="field"><label>Phone Number <span class="req">*</span></label><input type="tel" placeholder="09XX XXX XXXX"/></div>
+        <div class="field full"><label>Complete Address <span class="req">*</span></label><input type="text" placeholder="House/Unit, Street, Barangay, City, Province"/></div>
+      </div>
+    </div>
+
+    <!-- 2. ANTHROPOMETRICS & VITALS -->
+    <div class="section">
+      <div class="sec-head"><div class="sec-icon">📏</div><h2>Anthropometrics & Vitals</h2><span>Baseline measurements</span></div>
+      <div class="sub-label">Body Measurements</div>
+      <div class="fields four">
+        <div class="field"><label>Weight <span class="req">*</span></label><div class="meas"><input id="wtIn" type="number" placeholder="72" step="0.1"/><span class="meas-tag">kg</span></div></div>
+        <div class="field"><label>Height <span class="req">*</span></label><div class="meas"><input id="htIn" type="number" placeholder="158" step="0.1"/><span class="meas-tag">cm</span></div></div>
+        <div class="field"><label>BMI <span class="hint">auto-calculated</span></label><div class="meas"><input id="bmiIn" type="number" placeholder="—" step="0.1" readonly style="opacity:0.6"/><span class="meas-tag">kg/m²</span></div></div>
+        <div class="field"><label>Waist Circumference</label><div class="meas"><input type="number" placeholder="85" step="0.1"/><span class="meas-tag">cm</span></div></div>
+      </div>
+      <div class="sub-label">Vitals</div>
+      <div class="fields three">
+        <div class="field"><label>Blood Pressure</label><input type="text" placeholder="e.g. 120/80 mmHg"/></div>
+        <div class="field"><label>Heart Rate</label><div class="meas"><input type="number" placeholder="72"/><span class="meas-tag">bpm</span></div></div>
+        <div class="field"><label>Body Fat % <span class="hint">if available</span></label><div class="meas"><input type="number" placeholder="—" step="0.1"/><span class="meas-tag">%</span></div></div>
+      </div>
+    </div>
+
+    <!-- 3. WEIGHT HISTORY -->
+    <div class="section">
+      <div class="sec-head"><div class="sec-icon">⚖️</div><h2>Weight History</h2><span>Be as accurate as possible</span></div>
+      <div class="fields three">
+        <div class="field"><label>Highest Weight Ever</label><div class="meas"><input type="number" placeholder="95" step="0.1"/><span class="meas-tag">kg</span></div></div>
+        <div class="field"><label>Lowest Adult Weight</label><div class="meas"><input type="number" placeholder="58" step="0.1"/><span class="meas-tag">kg</span></div></div>
+        <div class="field"><label>Goal Weight</label><div class="meas"><input type="number" placeholder="60" step="0.1"/><span class="meas-tag">kg</span></div></div>
+      </div>
+      <div class="fields one">
+        <div class="field"><label>Previous Weight-Loss Attempts <span class="hint">what did you try before?</span></label>
+          <textarea placeholder="e.g. Keto diet, intermittent fasting, gym, previous medications, other injections..."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. MEDICAL HISTORY -->
+    <div class="section">
+      <div class="sec-head"><div class="sec-icon">🩺</div><h2>Medical History</h2><span>Check all that apply</span></div>
+      <div class="sub-label">Have you been diagnosed with any of the following?</div>
+      <div class="check-grid three">
+        <label class="c-opt" onclick="tog(this)"><input type="checkbox"/><div class="cbox"></div>Diabetes</label>
+        <label class="c-opt" onclick="tog(this)"><input type="checkbox"/><div class="cbox"></div>Prediabetes</label>
+        <label class="c-opt" onclick="tog(this)"><input type="checkbox"/><div class="cbox"></div>Hypertension</label>
+        <label class="c-opt" onclick="tog(this)"><input type="checkbox"/><div class="cbox"></div>Dyslipidemia</label>
+        <label class="c-opt" onclick="tog(this)"><input type="checkbox"/><div class="cbox"></div>Thyroid Disease</label>
+        <label class="c-opt" onclick="tog(this)"><input type="checkbox"/><div class="cbox"></div>Gallstones</label>
+        <label class="c-opt" onclick="tog(this)"><input type="checkbox"/><div class="cbox"></div>Pancreatitis</label>
+        <label class="c-opt" onclick="tog(this)"><input type="checkbox"/><div class="cbox"></div>GERD</label>
+        <label class="c-opt" onclick="tog(this)"><input type="checkbox"/><div class="cbox"></div>Kidney Disease</label>
+        <label class="c-opt" onclick="tog(this)"><input type="checkbox"/><div class="cbox"></div>Liver Disease</label>
+        <label class="c-opt" onclick="tog(this)"><input type="checkbox"/><div class="cbox"></div>None of the above</label>
+      </div>
+      <div class="fields one">
+        <div class="field"><label>Other conditions not listed <span class="hint">optional</span></label><textarea placeholder="Any other diagnosed conditions..."></textarea></div>
+        <div class="field"><label>Family History of Illness</label><textarea placeholder="e.g. Heart disease, cancer, thyroid disorders, diabetes in parents or siblings..."></textarea></div>
+        <div class="field"><label>History of Surgery</label>
+          <div class="radio-row">
+            <label class="r-opt" onclick="pick(this,'sx','no')"><input type="radio" name="sx"/><div class="dot"></div>No</label>
+            <label class="r-opt" onclick="pick(this,'sx','yes')"><input type="radio" name="sx"/><div class="dot"></div>Yes — describe below</label>
+          </div>
+          <textarea id="sx-d" style="display:none;margin-top:8px" placeholder="Type of surgery and approximate date..."></textarea>
+        </div>
+        <div class="field"><label>Recent Hospital Admission</label>
+          <div class="radio-row">
+            <label class="r-opt" onclick="pick(this,'adm','no')"><input type="radio" name="adm"/><div class="dot"></div>No</label>
+            <label class="r-opt" onclick="pick(this,'adm','yes')"><input type="radio" name="adm"/><div class="dot"></div>Yes — describe below</label>
+          </div>
+          <textarea id="adm-d" style="display:none;margin-top:8px" placeholder="When and reason for admission..."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. MEDICATION HISTORY -->
+    <div class="section">
+      <div class="sec-head"><div class="sec-icon">💊</div><h2>Medication History</h2><span>Current medications only</span></div>
+      <div class="sub-label">Are you currently taking any of these?</div>
+      <div class="check-grid">
+        <label class="c-opt" onclick="tog(this)"><input type="checkbox"/><div class="cbox"></div>Insulin</label>
+        <label class="c-opt" onclick="tog(this)"><input type="checkbox"/><div class="cbox"></div>Sulfonylureas</label>
+        <label class="c-opt" onclick="tog(this)"><input type="checkbox"/><div class="cbox"></div>Metformin</label>
+        <label class="c-opt" onclick="tog(this)"><input type="checkbox"/><div class="cbox"></div>GLP-1 Medications</label>
+        <label class="c-opt" onclick="tog(this)"><input type="checkbox"/><div class="cbox"></div>Steroids</label>
+        <label class="c-opt" onclick="tog(this)"><input type="checkbox"/><div class="cbox"></div>None</label>
+      </div>
+      <div class="fields one">
+        <div class="field"><label>Other medications / supplements <span class="hint">optional</span></label>
+          <textarea placeholder="List any other medications, vitamins, or supplements..."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. LIFESTYLE HISTORY -->
+    <div class="section">
+      <div class="sec-head"><div class="sec-icon">🌿</div><h2>Lifestyle History</h2><span>Helps us guide your program</span></div>
+      <div class="fields">
+        <div class="field"><label>Diet Habits</label>
+          <select><option value="">Select closest...</option><option>Regular balanced meals</option><option>High carb / rice-heavy</option><option>High fat / fried foods</option><option>Frequent skipped meals</option><option>Frequent fast food</option><option>Mostly healthy / clean eating</option></select>
+        </div>
+        <div class="field"><label>Exercise Habits</label>
+          <select><option value="">Select closest...</option><option>Sedentary (no exercise)</option><option>Light (1–2x/week)</option><option>Moderate (3–4x/week)</option><option>Active (5+ times/week)</option></select>
+        </div>
+        <div class="field"><label>Alcohol Intake</label>
+          <select><option value="">Select...</option><option>None</option><option>Occasional (social only)</option><option>Moderate (weekly)</option><option>Heavy (daily or near-daily)</option></select>
+        </div>
+        <div class="field"><label>Smoking</label>
+          <select><option value="">Select...</option><option>Non-smoker</option><option>Former smoker</option><option>Current smoker</option><option>Vapes / e-cigarette</option></select>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. CONTRAINDICATION SCREENING -->
+    <div class="section">
+      <div class="sec-head"><div class="sec-icon">⚠️</div><h2>Safety Screening</h2><span>Required for clearance</span></div>
+      <div class="warn-box red">
+        <h4>⚠️ Contraindication Check</h4>
+        <ul>
+          <li>Tirzepatide cannot be started if any of the below apply to you</li>
+          <li>Please answer honestly — your safety is the priority</li>
+        </ul>
+      </div>
+      <div class="fields one">
+        <div class="field"><label>Personal or family history of Medullary Thyroid Carcinoma (MTC)? <span class="req">*</span></label>
+          <div class="radio-row">
+            <label class="r-opt" onclick="pick(this,'mtc','no')"><input type="radio" name="mtc"/><div class="dot"></div>No</label>
+            <label class="r-opt" onclick="pick(this,'mtc','yes')"><input type="radio" name="mtc"/><div class="dot"></div>Yes</label>
+            <label class="r-opt" onclick="pick(this,'mtc','unsure')"><input type="radio" name="mtc"/><div class="dot"></div>Not sure</label>
+          </div>
+        </div>
+        <div class="field"><label>History of MEN2 (Multiple Endocrine Neoplasia Type 2)? <span class="req">*</span></label>
+          <div class="radio-row">
+            <label class="r-opt" onclick="pick(this,'men2','no')"><input type="radio" name="men2"/><div class="dot"></div>No</label>
+            <label class="r-opt" onclick="pick(this,'men2','yes')"><input type="radio" name="men2"/><div class="dot"></div>Yes</label>
+            <label class="r-opt" onclick="pick(this,'men2','unsure')"><input type="radio" name="men2"/><div class="dot"></div>Not sure</label>
+          </div>
+        </div>
+        <div class="field"><label>History of Pancreatitis? <span class="req">*</span></label>
+          <div class="radio-row">
+            <label class="r-opt" onclick="pick(this,'panc','no')"><input type="radio" name="panc"/><div class="dot"></div>No</label>
+            <label class="r-opt" onclick="pick(this,'panc','yes')"><input type="radio" name="panc"/><div class="dot"></div>Yes</label>
+          </div>
+        </div>
+        <div class="field"><label>Currently Pregnant or Breastfeeding? <span class="req">*</span></label>
+          <div class="radio-row">
+            <label class="r-opt" onclick="pick(this,'preg','no')"><input type="radio" name="preg"/><div class="dot"></div>No</label>
+            <label class="r-opt" onclick="pick(this,'preg','yes')"><input type="radio" name="preg"/><div class="dot"></div>Yes</label>
+          </div>
+        </div>
+        <div class="field"><label>Severe GI Disease (e.g. Crohn's, gastroparesis)? <span class="req">*</span></label>
+          <div class="radio-row">
+            <label class="r-opt" onclick="pick(this,'gi','no')"><input type="radio" name="gi"/><div class="dot"></div>No</label>
+            <label class="r-opt" onclick="pick(this,'gi','yes')"><input type="radio" name="gi"/><div class="dot"></div>Yes — describe below</label>
+          </div>
+          <textarea id="gi-d" style="display:none;margin-top:8px" placeholder="Please describe your GI condition..."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. LAB RESULTS -->
+    <div class="section">
+      <div class="sec-head"><div class="sec-icon">🔬</div><h2>Baseline Lab Results</h2><span>Upload if available</span></div>
+      <div class="fields">
+        <div class="field"><label>CBC with Platelet</label>
+          <div class="file-zone"><input type="file" accept="image/*,.pdf" onchange="fname(this,'cbc-fn')"/><div class="fi">📋</div><p><strong>Tap to upload</strong> · image or PDF</p><div class="fname" id="cbc-fn"></div></div>
+        </div>
+        <div class="field"><label>FBS (Fasting Blood Sugar)</label>
+          <div class="file-zone"><input type="file" accept="image/*,.pdf" onchange="fname(this,'fbs-fn')"/><div class="fi">🩸</div><p><strong>Tap to upload</strong> · image or PDF</p><div class="fname" id="fbs-fn"></div></div>
+        </div>
+        <div class="field"><label>SGPT / SGOT</label>
+          <div class="file-zone"><input type="file" accept="image/*,.pdf" onchange="fname(this,'liver-fn')"/><div class="fi">🫀</div><p><strong>Tap to upload</strong> · image or PDF</p><div class="fname" id="liver-fn"></div></div>
+        </div>
+        <div class="field"><label>Thyroid Panel</label>
+          <div class="file-zone"><input type="file" accept="image/*,.pdf" onchange="fname(this,'thy-fn')"/><div class="fi">🧪</div><p><strong>Tap to upload</strong> · image or PDF</p><div class="fname" id="thy-fn"></div></div>
+        </div>
+        <div class="field full"><label>Serum Creatinine</label>
+          <div class="file-zone"><input type="file" accept="image/*,.pdf" onchange="fname(this,'crea-fn')"/><div class="fi">🔬</div><p><strong>Tap to upload</strong> · image or PDF</p><div class="fname" id="crea-fn"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9. CONSENT -->
+    <div class="section">
+      <div class="sec-head"><div class="sec-icon">📝</div><h2>Consent & Acknowledgment</h2><span>Please read carefully</span></div>
+      <div class="warn-box purple">
+        <h4>📋 I understand and agree to the following:</h4>
+        <ul>
+          <li>Common side effects include nausea, vomiting, constipation, and decreased appetite</li>
+          <li>I will follow the dosing schedule and rotate injection sites as instructed</li>
+          <li>I will eat smaller meals, avoid fatty foods, stay hydrated, and maintain protein intake</li>
+          <li>I will attend follow-up check-ins every 4 weeks for weight and vitals monitoring</li>
+          <li>⚠️ Severe abdominal pain → I will go to the ER and message Bella's Wellness Hub immediately</li>
+          <li>I will not hesitate to message for any unwanted or unusual events during the program</li>
+        </ul>
+      </div>
+      <div class="fields one">
+        <div class="field"><label>I confirm all information is true and I give my consent <span class="req">*</span></label>
+          <div class="radio-row">
+            <label class="r-opt" onclick="pick(this,'consent','yes')"><input type="radio" name="consent"/><div class="dot"></div>Yes, I confirm and consent to the program</label>
+          </div>
+        </div>
+        <div class="field"><label>Questions or anything else we should know <span class="hint">optional</span></label>
+          <textarea placeholder="Feel free to share any concerns, questions, or additional information..."></textarea>
+        </div>
+      </div>
+      <div class="submit-area">
+        <button type="submit" class="btn">Submit Intake Form ✦</button>
+        <p class="privacy">🔒 All information is strictly confidential and used only for your safety and program eligibility.</p>
+      </div>
+    </div>
+
+  </form>
+
+  <div class="success" id="success">
+    <div class="s-ring">✦</div>
+    <h2>Intake Submitted!</h2>
+    <p>Thank you for trusting <strong>Bella's Wellness Hub</strong>. We've received your complete intake and will review everything carefully. We'll contact you within 24–48 hours via your registered phone number.</p>
+    <div style="margin-top:24px;padding:16px 20px;background:rgba(232,122,138,0.08);border:1px solid rgba(232,122,138,0.2);border-radius:12px;font-size:12.5px;color:rgba(255,255,255,0.5);line-height:1.7;text-align:left;">
+      ⚠️ <strong style="color:#E87A8A;">Reminder:</strong> If you experience severe abdominal pain, persistent vomiting, or any emergency symptoms — go to the nearest hospital immediately and message us right away. Do not hesitate.
+    </div>
+  </div>
+</div>
+<div style="text-align:center;margin-top:28px;font-size:10px;color:rgba(255,255,255,0.12);font-family:'Jost',sans-serif;letter-spacing:1px;">© Bella's Wellness Hub · All rights reserved</div>
+
+<script>
+function pick(el, name, val) {
+  document.querySelectorAll('.r-opt').forEach(o => {
+    if(o.querySelector(`input[name="${name}"]`)) o.classList.remove('sel');
+  });
+  el.classList.add('sel');
+  const map = {sx:'sx-d', adm:'adm-d', gi:'gi-d'};
+  if(map[name]) document.getElementById(map[name]).style.display = val==='yes'?'block':'none';
+  updateProgress();
+}
+function tog(el) {
+  el.classList.toggle('sel');
+  el.querySelector('input').checked = el.classList.contains('sel');
+  el.querySelector('.cbox').textContent = el.classList.contains('sel') ? '✓' : '';
+  updateProgress();
+}
+function fname(input, id) {
+  document.getElementById(id).textContent = input.files[0] ? '📎 ' + input.files[0].name : '';
+}
+// Auto-calculate BMI
+document.getElementById('wtIn').addEventListener('input', calcBMI);
+document.getElementById('htIn').addEventListener('input', calcBMI);
+function calcBMI() {
+  const wt = parseFloat(document.getElementById('wtIn').value);
+  const ht = parseFloat(document.getElementById('htIn').value);
+  if(wt && ht && ht > 0) {
+    document.getElementById('bmiIn').value = (wt / Math.pow(ht/100, 2)).toFixed(1);
+  }
+  updateProgress();
+}
+function updateProgress() {
+  const inputs = document.querySelectorAll('input[type=text],input[type=tel],input[type=number]:not([readonly]),textarea,select');
+  let filled = [...inputs].filter(i => i.value && i.value.trim()).length;
+  const radios = ['sx','adm','mtc','men2','panc','preg','gi','consent'];
+  radios.forEach(n => { if(document.querySelector(`input[name="${n}"]:checked`)) filled += 2; });
+  const total = inputs.length + radios.length * 2;
+  document.getElementById('pf').style.width = Math.min(100, Math.round(filled/total*100)) + '%';
+}
+document.querySelectorAll('input,textarea,select').forEach(el => {
+  el.addEventListener('change', updateProgress);
+  el.addEventListener('input', updateProgress);
+});
+document.getElementById('form').addEventListener('submit', e => {
+  e.preventDefault();
+  document.getElementById('form').style.display = 'none';
+  document.getElementById('success').classList.add('show');
+  document.getElementById('pf').style.width = '100%';
+  window.scrollTo({top:0,behavior:'smooth'});
+});
+</script>
+</body>
+</html>
