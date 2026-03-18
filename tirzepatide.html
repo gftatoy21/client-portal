@@ -28,6 +28,23 @@
   h1 em{font-style:italic;color:var(--violet);}
   .subtitle{font-size:13.5px;color:var(--muted);font-weight:300;line-height:1.7;max-width:500px;margin:0 auto;}
 
+  /* Evidence section */
+  .evidence{margin-bottom:24px;animation:up 0.8s ease 0.08s both;}
+  .evidence-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:400;color:var(--text);margin-bottom:6px;text-align:center;}
+  .evidence-sub{font-size:12.5px;color:var(--muted);font-weight:300;text-align:center;margin-bottom:20px;line-height:1.6;}
+  .ev-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+  .ev-card{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:14px;padding:20px 18px;}
+  .ev-card-icon{font-size:24px;margin-bottom:10px;}
+  .ev-card-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(155,95,240,0.6);font-weight:500;margin-bottom:6px;}
+  .ev-card h4{font-family:'Playfair Display',serif;font-size:15px;font-weight:400;color:var(--text);margin-bottom:8px;line-height:1.3;}
+  .ev-card p{font-size:12px;color:var(--muted);font-weight:300;line-height:1.7;}
+  .ev-card .stat{font-size:22px;font-weight:500;color:var(--violet);font-family:'Playfair Display',serif;margin-bottom:4px;}
+  .sources{background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:12px;padding:16px 20px;}
+  .sources-title{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:10px;font-weight:500;}
+  .source-item{display:flex;align-items:flex-start;gap:8px;margin-bottom:8px;font-size:11.5px;color:rgba(255,255,255,0.35);font-weight:300;line-height:1.5;}
+  .source-item:last-child{margin-bottom:0;}
+  .source-dot{width:4px;height:4px;border-radius:50%;background:var(--violet);flex-shrink:0;margin-top:6px;}
+
   /* Lab notice box */
   .lab-notice{
     background:rgba(155,95,240,0.07);
@@ -64,6 +81,7 @@
 
   @keyframes up{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
   @media(max-width:580px){
+    .ev-cards{grid-template-columns:1fr;}
     .lab-list{grid-template-columns:1fr;}
     .lab-notice{padding:18px 20px;}
     .form-card-head{padding:14px 18px;}
@@ -76,10 +94,131 @@
 
   <div class="header">
     <div class="brand">Bella's <em>Wellness</em> Hub</div>
-    <div class="brand-sub">✦ Aesthetics & Wellness ✦</div>
-    <div class="tag">💉 Weight Management Program</div>
+    <div class="brand-sub">✦ Physician-Guided Aesthetics & Wellness ✦</div>
+    <div class="tag">🩺 Physician-Guided · Weight Management</div>
     <h1>Tirzepatide Program<br/><em>Client Intake Form</em></h1>
-    <p class="subtitle">Please answer all questions honestly and completely. This helps us assess your eligibility and ensure your safety throughout the program.</p>
+    <p class="subtitle">This program is physician-guided and medically assessed to ensure your safety and best results. Please answer all questions honestly and completely.</p>
+  </div>
+
+  <!-- Shipping notice -->
+  <div style="background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.18);border-radius:14px;padding:16px 22px;margin-bottom:20px;display:flex;align-items:flex-start;gap:14px;animation:up 0.8s ease 0.06s both;">
+    <div style="font-size:24px;flex-shrink:0;">🚚</div>
+    <div>
+      <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(201,168,76,0.7);font-weight:500;margin-bottom:5px;">Shipping Available Nationwide</div>
+      <div style="font-size:13px;color:rgba(255,255,255,0.45);font-weight:300;line-height:1.7;">If you are outside our area, please include your <strong style="color:rgba(255,255,255,0.65);">complete shipping address</strong> in the form below under Additional Notes. Shipping fee is shouldered by the client. We ship Monday–Wednesday only using J&T, Ninja Van, or LBC.</div>
+    </div>
+  </div>
+  <div style="background:rgba(155,95,240,0.07);border:1px solid rgba(155,95,240,0.18);border-radius:14px;padding:18px 24px;margin-bottom:20px;display:flex;align-items:flex-start;gap:14px;animation:up 0.8s ease 0.05s both;">
+    <div style="font-size:28px;flex-shrink:0;">🩺</div>
+    <div>
+      <div style="font-size:12px;font-weight:500;color:rgba(155,95,240,0.9);letter-spacing:0.5px;text-transform:uppercase;margin-bottom:5px;">Physician-Guided Program</div>
+      <div style="font-size:13px;color:rgba(255,255,255,0.45);font-weight:300;line-height:1.7;">Your intake form will be personally reviewed by our physician before your program begins. We follow evidence-based dosing protocols and require baseline labs to ensure your safety throughout the program.</div>
+    </div>
+  </div>
+
+  <!-- Evidence Section -->
+  <div class="evidence">
+    <h2 class="evidence-title">Why <em style="font-style:italic;color:var(--violet);">Tirzepatide?</em></h2>
+    <p class="evidence-sub">Backed by global medical organizations and peer-reviewed clinical trials.<br/>This is not a trend — it's evidence-based medicine. 🩺</p>
+
+    <div class="ev-cards">
+
+      <div class="ev-card">
+        <div class="ev-card-icon">🩸</div>
+        <div class="ev-card-label">Type 2 Diabetes</div>
+        <h4>Superior Blood Sugar Control</h4>
+        <div class="stat">↓ A1C</div>
+        <p>Tirzepatide achieved superior A1C reductions compared to placebo, semaglutide, and insulin glargine across all SURPASS clinical trials. The ADA now recognizes it as a viable first-line therapy — shifting from "treating to failure" to "treating to target."</p>
+      </div>
+
+      <div class="ev-card">
+        <div class="ev-card-icon">⚖️</div>
+        <div class="ev-card-label">Obesity & Weight Management</div>
+        <h4>Clinically Proven Weight Loss</h4>
+        <div class="stat">15–22%</div>
+        <p>Body weight reduction over ~72 weeks in clinical trials. The WHO's 2024–2025 GLP-1 guideline formally evaluated tirzepatide for obesity management in adults, confirming its efficacy and safety profile.</p>
+      </div>
+
+      <div class="ev-card">
+        <div class="ev-card-icon">🌸</div>
+        <div class="ev-card-label">PCOS</div>
+        <h4>Addresses the Root Cause</h4>
+        <div class="stat">↓ Insulin Resistance</div>
+        <p>PCOS is driven by insulin resistance — and GLP-1/GIP dual agonists like tirzepatide directly target this. Studies show significant reductions in BMI, waist circumference, and testosterone levels, with some reports of improved menstrual regularity and ovulation.</p>
+      </div>
+
+      <div class="ev-card">
+        <div class="ev-card-icon">🫀</div>
+        <div class="ev-card-label">Cardiometabolic Health</div>
+        <h4>Beyond Weight Loss</h4>
+        <div class="stat">↓ CV Risk</div>
+        <p>GLP-1 receptor agonists reduce the risk of cardiovascular and kidney outcomes. The SUMMIT trial found tirzepatide reduced the risk of cardiovascular death or worsening heart failure — benefits that extend well beyond the scale.</p>
+      </div>
+
+    </div>
+
+    <!-- Prediabetes callout -->
+    <div style="background:rgba(155,95,240,0.06);border:1px solid rgba(155,95,240,0.15);border-radius:12px;padding:16px 20px;margin-bottom:14px;display:flex;gap:14px;align-items:flex-start;">
+      <div style="font-size:22px;flex-shrink:0;">📊</div>
+      <div>
+        <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(155,95,240,0.6);font-weight:500;margin-bottom:5px;">Prediabetes Prevention</div>
+        <p style="font-size:12.5px;color:rgba(255,255,255,0.5);font-weight:300;line-height:1.7;">Tirzepatide has demonstrated significant efficacy in preventing progression from prediabetes to Type 2 Diabetes. Under physician-guided treatment, early intervention with GLP-1 therapy can restore normal blood glucose levels and reduce long-term metabolic risk.</p>
+      </div>
+    </div>
+
+    <!-- Important note -->
+    <div style="background:rgba(232,122,138,0.06);border:1px solid rgba(232,122,138,0.15);border-radius:12px;padding:14px 18px;margin-bottom:16px;">
+      <p style="font-size:12px;color:rgba(232,122,138,0.7);font-weight:300;line-height:1.7;">⚠️ <strong style="font-weight:500;">Important:</strong> Tirzepatide is a prescription-grade medication. All benefits above are observed under physician-guided, medically monitored programs. Results vary per individual. This program requires a complete medical assessment before initiation.</p>
+    </div>
+
+    <!-- Sources -->
+    <div class="sources">
+      <div class="sources-title">📚 References & Sources</div>
+      <div class="source-item"><div class="source-dot"></div><span><strong style="color:rgba(255,255,255,0.5);">WHO (2024–2025)</strong> — Guideline on the use of GLP-1 receptor agonists and GIP/GLP-1 dual agonists for the treatment of obesity in adults. World Health Organization.</span></div>
+      <div class="source-item"><div class="source-dot"></div><span><strong style="color:rgba(255,255,255,0.5);">American Diabetes Association (ADA, 2025)</strong> — 85th Scientific Sessions. Tirzepatide advances in Type 2 Diabetes management. SURPASS clinical trial program.</span></div>
+      <div class="source-item"><div class="source-dot"></div><span><strong style="color:rgba(255,255,255,0.5);">Endocrine Society (ENDO 2024)</strong> — Tirzepatide remains effective for obesity-related comorbidities including diabetes, regardless of disease burden. Presented at ENDO 2024, Boston.</span></div>
+      <div class="source-item"><div class="source-dot"></div><span><strong style="color:rgba(255,255,255,0.5);">PMC / Endocrine Connections (2025)</strong> — Monney M, et al. Endocrine and metabolic effects of GLP-1 receptor agonists on women with PCOS. Geneva University Hospitals.</span></div>
+      <div class="source-item"><div class="source-dot"></div><span><strong style="color:rgba(255,255,255,0.5);">PMC Scoping Review (2024)</strong> — Effects of GLP-1 receptor agonists on PCOS: tirzepatide showed greatest mean weight reduction (−17.60 kg) among all GLP-1 agents studied.</span></div>
+      <div class="source-item"><div class="source-dot"></div><span><strong style="color:rgba(255,255,255,0.5);">Truveta Research (2025)</strong> — Rising use of GLP-1 medications among women with PCOS. Tirzepatide prescriptions for PCOS increased 7-fold from 2021–2025.</span></div>
+    </div>
+  </div>
+
+  <!-- Lifestyle Counseling Notice -->
+  <div style="background:rgba(76,175,80,0.06);border:1px solid rgba(76,175,80,0.18);border-radius:16px;padding:22px 26px;margin-bottom:24px;animation:up 0.8s ease 0.12s both;">
+    <h3 style="font-family:'Playfair Display',serif;font-size:16px;font-weight:400;color:#F0EBFF;margin-bottom:14px;display:flex;align-items:center;gap:10px;">🌿 Lifestyle Guidelines — Please Read Before Starting</h3>
+    <p style="font-size:12.5px;color:rgba(255,255,255,0.45);font-weight:300;line-height:1.7;margin-bottom:16px;">Tirzepatide is a powerful tool — but it works <strong style="color:rgba(255,255,255,0.65);">best alongside healthy habits</strong>, not as a replacement for them. Please take note of these important guidelines throughout your program:</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;">
+
+      <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(76,175,80,0.12);border-radius:10px;padding:14px 16px;">
+        <div style="font-size:18px;margin-bottom:6px;">🏃‍♀️</div>
+        <div style="font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(76,175,80,0.6);font-weight:500;margin-bottom:5px;">Exercise</div>
+        <div style="font-size:12.5px;color:rgba(255,255,255,0.5);font-weight:300;line-height:1.6;">Aim for at least <strong style="color:rgba(255,255,255,0.7);">150 minutes of moderate exercise per week</strong> — brisk walking, swimming, cycling. This preserves muscle mass and enhances your results.</div>
+      </div>
+
+      <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(76,175,80,0.12);border-radius:10px;padding:14px 16px;">
+        <div style="font-size:18px;margin-bottom:6px;">💪</div>
+        <div style="font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(76,175,80,0.6);font-weight:500;margin-bottom:5px;">Strength Training</div>
+        <div style="font-size:12.5px;color:rgba(255,255,255,0.5);font-weight:300;line-height:1.6;">Include <strong style="color:rgba(255,255,255,0.7);">muscle-strengthening exercises</strong> at least 2x/week. As weight decreases, maintaining muscle ensures a healthier, stronger body composition.</div>
+      </div>
+
+      <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(76,175,80,0.12);border-radius:10px;padding:14px 16px;">
+        <div style="font-size:18px;margin-bottom:6px;">🍽️</div>
+        <div style="font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(76,175,80,0.6);font-weight:500;margin-bottom:5px;">Eat 3x a Day</div>
+        <div style="font-size:12.5px;color:rgba(255,255,255,0.5);font-weight:300;line-height:1.6;"><strong style="color:rgba(255,255,255,0.7);">Do not skip meals.</strong> Eating 3 regular meals daily helps prevent hypoglycemia (low blood sugar), especially important when taking GLP-1 medications.</div>
+      </div>
+
+      <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(76,175,80,0.12);border-radius:10px;padding:14px 16px;">
+        <div style="font-size:18px;margin-bottom:6px;">💧</div>
+        <div style="font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(76,175,80,0.6);font-weight:500;margin-bottom:5px;">Hydration & Protein</div>
+        <div style="font-size:12.5px;color:rgba(255,255,255,0.5);font-weight:300;line-height:1.6;">Drink plenty of water daily. Prioritize <strong style="color:rgba(255,255,255,0.7);">protein-rich meals</strong> — chicken, eggs, fish, legumes — to support muscle maintenance and reduce nausea.</div>
+      </div>
+
+    </div>
+
+    <div style="background:rgba(232,122,138,0.07);border:1px solid rgba(232,122,138,0.18);border-radius:9px;padding:12px 16px;">
+      <p style="font-size:12px;color:rgba(232,122,138,0.8);font-weight:300;line-height:1.7;">⚠️ <strong style="font-weight:500;">Important:</strong> Tirzepatide is a tool — not a shortcut. Relying solely on medication without lifestyle changes may reduce effectiveness and increase side effects. Your commitment to these habits is part of the program. 🌿</p>
+    </div>
   </div>
 
   <!-- Lab Notice -->

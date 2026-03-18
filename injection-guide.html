@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Injection Guide — Bella's Wellness Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --bg:#0D0D12;--surface:rgba(255,255,255,0.04);
+    --border:rgba(255,255,255,0.08);
+    --violet:#9B5FF0;--violet-dim:rgba(155,95,240,0.12);
+    --gold:#C9A84C;--text:#F0EBFF;--muted:rgba(255,255,255,0.38);
+    --green:rgba(76,175,80,0.8);--green-dim:rgba(76,175,80,0.07);
+    --red-dim:rgba(232,122,138,0.08);--red:rgba(232,122,138,0.85);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Jost',sans-serif;background:var(--bg);color:var(--text);
+    min-height:100vh;padding:48px 20px 80px;
+    background-image:
+      radial-gradient(ellipse 70% 50% at 15% 0%,rgba(90,40,180,0.13) 0%,transparent 65%),
+      radial-gradient(ellipse 50% 40% at 85% 100%,rgba(155,95,240,0.07) 0%,transparent 60%);}
+  .wrap{max-width:680px;margin:0 auto;}
+  .back{display:inline-flex;align-items:center;gap:8px;color:var(--muted);font-size:13px;font-weight:300;text-decoration:none;margin-bottom:36px;transition:color 0.2s;}
+  .back:hover{color:var(--text);}
+
+  /* Header */
+  .header{text-align:center;margin-bottom:40px;animation:up 0.7s ease both;}
+  .brand{font-family:'Playfair Display',serif;font-size:clamp(18px,3.5vw,26px);font-weight:400;color:#F0EBFF;margin-bottom:5px;}
+  .brand em{font-style:italic;color:var(--violet);}
+  .brand-sub{font-size:9px;letter-spacing:3.5px;text-transform:uppercase;color:rgba(155,95,240,0.4);margin-bottom:18px;font-family:'Jost',sans-serif;}
+  .tag{display:inline-block;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--violet);border:1px solid rgba(155,95,240,0.3);padding:5px 16px;border-radius:20px;margin-bottom:16px;background:var(--violet-dim);}
+  h1{font-family:'Playfair Display',serif;font-size:clamp(28px,5vw,42px);font-weight:400;line-height:1.15;margin-bottom:10px;}
+  h1 em{font-style:italic;color:var(--violet);}
+  .subtitle{font-size:13px;color:var(--muted);font-weight:300;line-height:1.7;max-width:480px;margin:0 auto;}
+
+  /* Warning box */
+  .warn{background:var(--red-dim);border:1px solid rgba(232,122,138,0.22);border-radius:14px;padding:18px 22px;margin-bottom:20px;animation:up 0.7s ease 0.05s both;}
+  .warn h4{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--red);font-weight:500;margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+  .warn ul{list-style:none;display:flex;flex-direction:column;gap:5px;}
+  .warn ul li{font-size:12.5px;color:rgba(255,255,255,0.5);font-weight:300;padding-left:14px;position:relative;line-height:1.6;}
+  .warn ul li::before{content:'⚠';position:absolute;left:0;font-size:10px;color:var(--red);}
+
+  /* Step cards */
+  .steps{display:flex;flex-direction:column;gap:12px;margin-bottom:20px;}
+  .step{background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden;animation:up 0.7s ease both;}
+  .step-head{padding:14px 20px;display:flex;align-items:center;gap:14px;cursor:pointer;user-select:none;transition:background 0.2s;}
+  .step-head:hover{background:rgba(155,95,240,0.05);}
+  .step-num{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#5A28B4,var(--violet));display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;flex-shrink:0;color:white;}
+  .step-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:400;flex:1;}
+  .step-icon{font-size:18px;}
+  .step-chevron{font-size:12px;color:var(--muted);transition:transform 0.3s;}
+  .step.open .step-chevron{transform:rotate(180deg);}
+  .step-body{display:none;padding:0 20px 18px 66px;}
+  .step.open .step-body{display:block;}
+  .step-body p{font-size:13px;color:var(--muted);font-weight:300;line-height:1.8;margin-bottom:10px;}
+  .step-body ul{list-style:none;display:flex;flex-direction:column;gap:7px;}
+  .step-body ul li{font-size:13px;color:rgba(255,255,255,0.55);font-weight:300;padding-left:16px;position:relative;line-height:1.6;}
+  .step-body ul li::before{content:'✦';position:absolute;left:0;font-size:9px;color:var(--violet);top:3px;}
+  .step-body .tip{background:var(--violet-dim);border:1px solid rgba(155,95,240,0.18);border-radius:8px;padding:10px 14px;margin-top:10px;font-size:12px;color:rgba(155,95,240,0.8);font-weight:300;line-height:1.6;}
+
+  /* Injection sites visual */
+  .sites-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:12px 0;}
+  .site-card{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:10px;padding:14px 10px;text-align:center;}
+  .site-card .site-icon{font-size:24px;margin-bottom:6px;}
+  .site-card .site-name{font-size:12px;font-weight:500;color:rgba(255,255,255,0.7);margin-bottom:3px;}
+  .site-card .site-desc{font-size:10.5px;color:var(--muted);font-weight:300;line-height:1.5;}
+
+  /* Dosing table */
+  .dose-table{width:100%;border-collapse:collapse;margin:12px 0;}
+  .dose-table th{background:rgba(155,95,240,0.15);color:rgba(155,95,240,0.9);font-size:10px;letter-spacing:1px;text-transform:uppercase;font-weight:500;padding:10px 14px;text-align:left;border:1px solid rgba(155,95,240,0.15);}
+  .dose-table td{font-size:12.5px;color:var(--muted);font-weight:300;padding:9px 14px;border:1px solid rgba(255,255,255,0.05);line-height:1.5;}
+  .dose-table tr:nth-child(even) td{background:rgba(255,255,255,0.02);}
+  .dose-table .current{color:var(--violet);font-weight:500;}
+
+  /* Side effects */
+  .se-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0;}
+  .se-item{background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:9px;padding:11px 13px;font-size:12.5px;color:var(--muted);font-weight:300;display:flex;align-items:flex-start;gap:8px;line-height:1.5;}
+  .se-dot{width:6px;height:6px;border-radius:50%;background:var(--violet);flex-shrink:0;margin-top:5px;}
+
+  /* Emergency box */
+  .emergency{background:var(--red-dim);border:2px solid rgba(232,122,138,0.3);border-radius:14px;padding:20px 22px;margin-bottom:20px;}
+  .emergency h3{font-family:'Playfair Display',serif;font-size:18px;font-weight:400;color:var(--red);margin-bottom:12px;display:flex;align-items:center;gap:10px;}
+  .emergency p{font-size:13px;color:rgba(255,255,255,0.5);font-weight:300;line-height:1.7;margin-bottom:10px;}
+  .emergency .contact-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;background:var(--red);color:white;border-radius:10px;font-size:13px;font-weight:500;text-decoration:none;margin-top:4px;transition:all 0.2s;}
+  .emergency .contact-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(232,122,138,0.3);}
+
+  /* Progress tracker */
+  .tracker{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px 22px;margin-bottom:20px;}
+  .tracker h3{font-family:'Playfair Display',serif;font-size:17px;font-weight:400;margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+  .week-list{display:flex;flex-direction:column;gap:8px;}
+  .week-item{display:flex;align-items:flex-start;gap:12px;padding:10px 14px;background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:9px;}
+  .week-badge{background:linear-gradient(135deg,#5A28B4,var(--violet));color:white;font-size:10px;font-weight:500;padding:3px 10px;border-radius:20px;white-space:nowrap;flex-shrink:0;margin-top:2px;}
+  .week-content{font-size:12.5px;color:var(--muted);font-weight:300;line-height:1.6;}
+  .week-content strong{color:rgba(255,255,255,0.65);font-weight:500;}
+
+  .footer-note{text-align:center;margin-top:28px;font-size:10px;color:rgba(255,255,255,0.12);letter-spacing:0.5px;}
+
+  @keyframes up{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+  @media(max-width:560px){
+    .sites-grid{grid-template-columns:1fr 1fr;}
+    .se-grid{grid-template-columns:1fr;}
+    .step-body{padding-left:20px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a href="index.html" class="back">← Back to Portal</a>
+
+  <div class="header">
+    <div class="brand">Bella's <em>Wellness</em> Hub</div>
+    <div class="brand-sub">✦ Physician-Guided Aesthetics & Wellness ✦</div>
+    <div class="tag">💉 Tirzepatide Self-Injection Guide</div>
+    <h1>How to <em>Safely Inject</em><br/>Your Tirzepatide</h1>
+    <p class="subtitle">This guide was prepared by your physician at Bella's Wellness Hub. Please read it fully before your first injection. When in doubt — always message us first. 🌿</p>
+  </div>
+
+  <!-- Warning -->
+  <div class="warn">
+    <h4>⚠️ Before You Begin — Read This</h4>
+    <ul>
+      <li>Never inject if you feel unwell, dizzy, or have low blood sugar</li>
+      <li>Always wash your hands thoroughly before handling any supplies</li>
+      <li>Never share your vial, syringes, or needles with anyone</li>
+      <li>Do not inject into skin that is irritated, bruised, or scarred</li>
+      <li>If this is your first injection — message Bella's Wellness Hub first ✉️</li>
+    </ul>
+  </div>
+
+  <!-- Step-by-step -->
+  <div class="steps">
+
+    <div class="step open">
+      <div class="step-head" onclick="toggle(this)">
+        <div class="step-num">1</div>
+        <div class="step-title">Gather Your Supplies</div>
+        <div class="step-icon">📦</div>
+        <div class="step-chevron">▼</div>
+      </div>
+      <div class="step-body">
+        <p>Everything you need is inside your Bella's Wellness Hub box:</p>
+        <ul>
+          <li>1 vial of Tirzepatide 15mg (lyophilized powder)</li>
+          <li>1 vial of BAC Water 3ml (bacteriostatic water for reconstitution)</li>
+          <li>1 x 3cc syringe (for reconstitution)</li>
+          <li>Insulin syringes 1ml (for injection)</li>
+          <li>Alcohol swabs</li>
+          <li>Gloves</li>
+        </ul>
+        <div class="tip">💡 Store your reconstituted vial in the refrigerator (2–8°C). Never freeze. Keep away from direct light.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-head" onclick="toggle(this)">
+        <div class="step-num">2</div>
+        <div class="step-title">Reconstitute the Vial</div>
+        <div class="step-icon">🧪</div>
+        <div class="step-chevron">▼</div>
+      </div>
+      <div class="step-body">
+        <p>Tirzepatide comes as a powder and needs to be mixed with BAC Water before use. Do this only once — the mixed vial will last the full program.</p>
+        <ul>
+          <li>Wipe the tops of both vials with a fresh alcohol swab — let dry 30 seconds</li>
+          <li>Aspirate <strong>1.5ml of BAC Water</strong> using the 3cc syringe</li>
+          <li>Slowly inject the BAC Water into the Tirzepatide vial — aim at the glass wall, not directly onto the powder</li>
+          <li>Gently swirl the vial in a circular motion until the powder is fully dissolved — <strong>do NOT shake</strong></li>
+          <li>The solution should be clear and colorless — discard if cloudy or has particles</li>
+        </ul>
+        <div class="tip">💡 Adding BAC Water slowly and swirling (not shaking) prevents the peptide from denaturing (breaking down). This step protects the potency of your medication.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-head" onclick="toggle(this)">
+        <div class="step-num">3</div>
+        <div class="step-title">Calculate Your Dose</div>
+        <div class="step-icon">📐</div>
+        <div class="step-chevron">▼</div>
+      </div>
+      <div class="step-body">
+        <p>Your physician has prescribed a specific starting dose. Follow this escalation schedule — <strong>do not skip ahead</strong> even if you feel ready. Each dose is aspirated using your insulin syringe:</p>
+        <table class="dose-table">
+          <tr><th>Week</th><th>Dose</th><th>How to Aspirate</th><th>Notes</th></tr>
+          <tr><td>Week 1–4</td><td class="current">2.5 mg</td><td>Aspirate <strong>0.25ml</strong> on insulin syringe</td><td style="color:rgba(76,175,80,0.8);">▶ Starting dose</td></tr>
+          <tr style="background:rgba(232,122,138,0.05);">
+            <td colspan="4" style="padding:10px 14px;font-size:12px;color:rgba(232,122,138,0.8);font-weight:400;border:1px solid rgba(232,122,138,0.15);">
+              🔄 <strong>Reassessment Required at Week 5</strong> — Message Bella's Wellness Hub before adjusting your dose. Do NOT self-escalate. Your physician will assess your weight, side effects, and tolerance before clearing you for the next dose.
+            </td>
+          </tr>
+          <tr><td>Week 5–8</td><td>5 mg</td><td>Aspirate <strong>0.50ml</strong> on insulin syringe</td><td style="color:rgba(201,168,76,0.8);">⚠ Only if cleared</td></tr>
+          <tr><td>Week 9–12</td><td>7.5 mg</td><td>Aspirate <strong>0.75ml</strong> on insulin syringe</td><td style="color:rgba(201,168,76,0.8);">⚠ Only if cleared</td></tr>
+          <tr><td>Week 13–16</td><td>10 mg</td><td>Aspirate <strong>1.00ml</strong> on insulin syringe</td><td style="color:rgba(201,168,76,0.8);">⚠ Only if cleared</td></tr>
+          <tr><td>Week 17+</td><td>12.5–15 mg</td><td colspan="2">As directed by Bella's Wellness Hub</td></tr>
+        </table>
+        <div style="margin-top:10px;padding:10px 14px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:8px;font-size:12px;color:rgba(255,255,255,0.4);font-weight:300;line-height:1.6;">
+          📐 <strong style="color:rgba(255,255,255,0.55);">How this is calculated:</strong> 15mg Tirzepatide reconstituted in 1.5ml BAC Water = <strong style="color:rgba(155,95,240,0.8);">10mg per 1ml</strong>. So 2.5mg = 0.25ml, 5mg = 0.50ml, and so on.
+        </div>
+        <div class="tip">💡 Dose escalation requires physician clearance — never self-escalate. Message Bella's Wellness Hub at Week 5 for your reassessment before adjusting your dose. Your safety and tolerance will be evaluated first.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-head" onclick="toggle(this)">
+        <div class="step-num">4</div>
+        <div class="step-title">Choose Your Injection Site</div>
+        <div class="step-icon">📍</div>
+        <div class="step-chevron">▼</div>
+      </div>
+      <div class="step-body">
+        <p>Tirzepatide is a <strong>subcutaneous injection</strong> — meaning it goes into the fatty tissue just under the skin. Rotate sites every week:</p>
+        <div class="sites-grid">
+          <div class="site-card">
+            <div class="site-icon">🫃</div>
+            <div class="site-name">Abdomen</div>
+            <div class="site-desc">2 inches away from your belly button. Most common site.</div>
+          </div>
+          <div class="site-card">
+            <div class="site-icon">🦵</div>
+            <div class="site-name">Thigh</div>
+            <div class="site-desc">Outer front area of either thigh. Easy to self-inject.</div>
+          </div>
+          <div class="site-card">
+            <div class="site-icon">💪</div>
+            <div class="site-name">Upper Arm</div>
+            <div class="site-desc">Back of upper arm. May need assistance for self-injection.</div>
+          </div>
+        </div>
+        <div class="tip">💡 Rotate sites every week — e.g. right abdomen → left abdomen → right thigh → left thigh. This prevents skin hardening (lipohypertrophy) at one spot.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-head" onclick="toggle(this)">
+        <div class="step-num">5</div>
+        <div class="step-title">Prepare the Injection Area</div>
+        <div class="step-icon">🧼</div>
+        <div class="step-chevron">▼</div>
+      </div>
+      <div class="step-body">
+        <ul>
+          <li>Wash hands thoroughly with soap and water for at least 20 seconds</li>
+          <li>Put on your gloves</li>
+          <li>Clean the chosen injection site with an alcohol swab using a circular motion</li>
+          <li>Wait <strong>30 seconds</strong> for the alcohol to fully dry before injecting — wet alcohol stings and can affect absorption</li>
+          <li>Wipe the top of your Tirzepatide vial with a fresh alcohol swab</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-head" onclick="toggle(this)">
+        <div class="step-num">6</div>
+        <div class="step-title">Draw Up Your Dose</div>
+        <div class="step-icon">💉</div>
+        <div class="step-chevron">▼</div>
+      </div>
+      <div class="step-body">
+        <ul>
+          <li>Remove the cap from your insulin syringe</li>
+          <li>Insert the needle into the Tirzepatide vial and draw back the plunger to your prescribed volume</li>
+          <li>Check for air bubbles — if present, gently tap the syringe and push them out</li>
+          <li>Double-check the volume before injecting</li>
+        </ul>
+        <div class="tip">💡 Always draw from your reconstituted vial slowly. Air bubbles in a subcutaneous injection are not dangerous but can reduce your dose accuracy.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-head" onclick="toggle(this)">
+        <div class="step-num">7</div>
+        <div class="step-title">Inject</div>
+        <div class="step-icon">✦</div>
+        <div class="step-chevron">▼</div>
+      </div>
+      <div class="step-body">
+        <ul>
+          <li>Gently pinch the skin at your chosen site with two fingers</li>
+          <li>Insert the needle at a <strong>45–90° angle</strong> — 90° for abdomen/thigh, 45° for upper arm</li>
+          <li>Push the plunger down slowly and steadily</li>
+          <li>Hold the needle in place for <strong>5–10 seconds</strong> after injecting — this ensures full delivery</li>
+          <li>Withdraw the needle at the same angle it entered</li>
+          <li>Apply gentle pressure with a gauze pad — <strong>do not rub</strong></li>
+        </ul>
+        <div class="tip">💡 A little redness or a small bump at the injection site is normal and will disappear within minutes. Mild stinging is also normal.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-head" onclick="toggle(this)">
+        <div class="step-num">8</div>
+        <div class="step-title">After Your Injection</div>
+        <div class="step-icon">🌿</div>
+        <div class="step-chevron">▼</div>
+      </div>
+      <div class="step-body">
+        <ul>
+          <li>Dispose of your needle safely — recap carefully or use a sharps container</li>
+          <li><strong>Never reuse</strong> syringes or needles</li>
+          <li>Store remaining vial in the refrigerator (2–8°C)</li>
+          <li>Eat a small meal within 30–60 minutes if possible</li>
+          <li>Stay hydrated throughout the day</li>
+          <li>Note the date, dose, and injection site in your weekly log</li>
+        </ul>
+        <div class="tip">💡 Take your injection on the same day every week — set a phone alarm so you never miss a dose. Consistency is key to results! 📅</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Weekly tracker -->
+  <div class="tracker">
+    <h3>📊 What to Monitor Each Week</h3>
+    <div class="week-list">
+      <div class="week-item">
+        <div class="week-badge">Every Week</div>
+        <div class="week-content"><strong>Record your weight</strong> — same time, same conditions (morning, after using CR, before eating). Take note of any side effects experienced.</div>
+      </div>
+      <div class="week-item">
+        <div class="week-badge">Every 4 Weeks</div>
+        <div class="week-content"><strong>Check-in with Bella's Wellness Hub</strong> — send your weight, blood pressure, heart rate, and a photo update. Dose adjustment will be made here if needed.</div>
+      </div>
+      <div class="week-item">
+        <div class="week-badge">Every 3–6 Months</div>
+        <div class="week-content"><strong>Repeat laboratory tests</strong> — CBC with Platelet, FBS, SGPT/SGOT, Thyroid Panel, Serum Creatinine. Send results to Bella's Wellness Hub for review.</div>
+      </div>
+      <div class="week-item">
+        <div class="week-badge">Anytime</div>
+        <div class="week-content"><strong>Message Bella's Wellness Hub</strong> if you experience anything unusual — nausea, vomiting, severe abdominal pain, dizziness, or any concern at all. Do not hesitate. 📱</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Side effects -->
+  <div style="background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px 22px;margin-bottom:20px;">
+    <h3 style="font-family:'Playfair Display',serif;font-size:17px;font-weight:400;margin-bottom:6px;display:flex;align-items:center;gap:10px;">😌 Common Side Effects</h3>
+    <p style="font-size:12.5px;color:var(--muted);font-weight:300;margin-bottom:12px;line-height:1.6;">These are normal, especially in the first few weeks. They usually improve as your body adjusts:</p>
+    <div class="se-grid">
+      <div class="se-item"><div class="se-dot"></div>Nausea — especially after first injection</div>
+      <div class="se-item"><div class="se-dot"></div>Decreased appetite</div>
+      <div class="se-item"><div class="se-dot"></div>Constipation or loose stools</div>
+      <div class="se-item"><div class="se-dot"></div>Mild fatigue</div>
+      <div class="se-item"><div class="se-dot"></div>Mild injection site redness</div>
+      <div class="se-item"><div class="se-dot"></div>Burping or bloating</div>
+    </div>
+    <div style="margin-top:12px;padding:12px 16px;background:var(--green-dim);border:1px solid rgba(76,175,80,0.15);border-radius:9px;font-size:12px;color:rgba(76,175,80,0.75);font-weight:300;line-height:1.6;">
+      ✅ <strong style="font-weight:500;">Tips to reduce nausea:</strong> Eat smaller meals · Avoid fatty/greasy food · Eat 3x a day — do not skip meals · Stay hydrated · Take injection at bedtime so you sleep through the nausea window
+    </div>
+  </div>
+
+  <!-- Emergency -->
+  <div class="emergency">
+    <h3>🚨 When to Seek Emergency Help</h3>
+    <p>Go to the nearest emergency room <strong style="color:rgba(255,255,255,0.7);">immediately</strong> and message Bella's Wellness Hub if you experience:</p>
+    <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;margin-bottom:14px;">
+      <li style="font-size:13px;color:rgba(255,255,255,0.5);font-weight:300;padding-left:16px;position:relative;line-height:1.6;"><span style="position:absolute;left:0;color:var(--red);">🔴</span> Severe abdominal pain (possible pancreatitis)</li>
+      <li style="font-size:13px;color:rgba(255,255,255,0.5);font-weight:300;padding-left:16px;position:relative;line-height:1.6;"><span style="position:absolute;left:0;color:var(--red);">🔴</span> Persistent vomiting — unable to keep food/water down</li>
+      <li style="font-size:13px;color:rgba(255,255,255,0.5);font-weight:300;padding-left:16px;position:relative;line-height:1.6;"><span style="position:absolute;left:0;color:var(--red);">🔴</span> Severe dizziness or fainting</li>
+      <li style="font-size:13px;color:rgba(255,255,255,0.5);font-weight:300;padding-left:16px;position:relative;line-height:1.6;"><span style="position:absolute;left:0;color:var(--red);">🔴</span> Signs of hypoglycemia — cold sweats, shaking, confusion, extreme hunger</li>
+      <li style="font-size:13px;color:rgba(255,255,255,0.5);font-weight:300;padding-left:16px;position:relative;line-height:1.6;"><span style="position:absolute;left:0;color:var(--red);">🔴</span> Difficulty breathing or swallowing</li>
+      <li style="font-size:13px;color:rgba(255,255,255,0.5);font-weight:300;padding-left:16px;position:relative;line-height:1.6;"><span style="position:absolute;left:0;color:var(--red);">🔴</span> Neck lump or difficulty swallowing (possible thyroid concern)</li>
+    </ul>
+    <p style="font-size:12px;color:rgba(255,255,255,0.35);font-weight:300;line-height:1.6;">⚠️ Do not wait it out. Do not self-medicate. Go to the ER and message Bella's Wellness Hub simultaneously. Your safety is always the priority. 🌿</p>
+  </div>
+
+  <div style="text-align:center;padding:24px 20px;background:var(--violet-dim);border:1px solid rgba(155,95,240,0.18);border-radius:14px;margin-bottom:20px;">
+    <div style="font-family:'Playfair Display',serif;font-size:18px;font-weight:400;margin-bottom:8px;">Questions? Always reach out. 💜</div>
+    <div style="font-size:13px;color:var(--muted);font-weight:300;line-height:1.7;">You are never alone in this program. Bella's Wellness Hub is always available via Messenger or Viber for any concern — big or small. Do not hesitate to message anytime. 🌿</div>
+  </div>
+
+  <p class="footer-note">🔒 This guide is prepared exclusively for Bella's Wellness Hub clients · © Bella's Wellness Hub · All rights reserved</p>
+</div>
+
+<script>
+function toggle(head) {
+  const step = head.parentElement;
+  const isOpen = step.classList.contains('open');
+  document.querySelectorAll('.step').forEach(s => s.classList.remove('open'));
+  if(!isOpen) step.classList.add('open');
+}
+</script>
+</body>
+</html>
