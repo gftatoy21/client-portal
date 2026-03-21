@@ -78,6 +78,7 @@
     overflow:hidden;
     background:rgba(255,255,255,0.03);
     text-align:left;
+    -webkit-tap-highlight-color: rgba(155,95,240,0.2);
   }
 
   .card::before{
@@ -216,7 +217,7 @@
   </div>
 
   <div class="cards">
-    <a href="tirzepatide.html" class="card card-tirze">
+    <a href="tirzepatide.html" class="card card-tirze" onclick="window.location.href='tirzepatide.html'">
       <div class="card-icon">💉</div>
       <span class="card-tag">🩺 Physician-Guided · Weight Management</span>
       <h2>Tirzepatide Program</h2>
@@ -225,10 +226,12 @@
         <div style="font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(180,140,255,0.5);margin-bottom:4px;">Starting at</div>
         <div style="font-family:'Playfair Display',serif;font-size:26px;font-weight:400;color:#F5F0FF;line-height:1;">₱2,199 <span style="font-size:13px;color:rgba(255,255,255,0.3);font-family:'Jost',sans-serif;font-weight:300;">/ box · PF included</span></div>
       </div>
-      <div class="card-arrow">Begin Intake <span>→</span></div>
+      <div style="width:100%;padding:14px;background:linear-gradient(135deg,#5A28B4,#9B5FF0);border-radius:12px;text-align:center;color:white;font-family:'Jost',sans-serif;font-size:14px;font-weight:500;letter-spacing:0.5px;">
+        Begin Intake →
+      </div>
     </a>
 
-    <a href="lemon-bottle.html" class="card card-lemon">
+    <a href="lemon-bottle.html" class="card card-lemon" onclick="window.location.href='lemon-bottle.html'">
       <div class="card-icon">🍋</div>
       <span class="card-tag">Body Contouring</span>
       <h2>Lemon Bottle Session</h2>
@@ -237,7 +240,9 @@
         <div style="font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(201,168,76,0.5);margin-bottom:4px;">Starting at</div>
         <div style="font-family:'Playfair Display',serif;font-size:26px;font-weight:400;color:#F5F0FF;line-height:1;">₱2,499 <span style="font-size:13px;color:rgba(255,255,255,0.3);font-family:'Jost',sans-serif;font-weight:300;">/ vial · PF included</span></div>
       </div>
-      <div class="card-arrow">Book Assessment <span>→</span></div>
+      <div style="width:100%;padding:14px;background:linear-gradient(135deg,#8B6010,#C9A84C);border-radius:12px;text-align:center;color:#1A1508;font-family:'Jost',sans-serif;font-size:14px;font-weight:600;letter-spacing:0.5px;">
+        Book Assessment →
+      </div>
     </a>
   </div>
 
