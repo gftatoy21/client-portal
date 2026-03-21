@@ -13,273 +13,272 @@
     background:#0D0D12;
     display:flex;align-items:center;justify-content:center;
     padding:40px 20px;
-    overflow:hidden;
     position:relative;
+    overflow-x:hidden;
   }
-
-  /* Animated background orbs */
   .orb{position:fixed;border-radius:50%;filter:blur(80px);pointer-events:none;animation:drift 12s ease-in-out infinite alternate;}
-  .orb1{width:500px;height:500px;background:rgba(120,60,180,0.18);top:-100px;left:-100px;animation-delay:0s;}
+  .orb1{width:500px;height:500px;background:rgba(120,60,180,0.18);top:-100px;left:-100px;}
   .orb2{width:400px;height:400px;background:rgba(201,168,76,0.1);bottom:-80px;right:-80px;animation-delay:-4s;}
-  .orb3{width:300px;height:300px;background:rgba(196,126,138,0.1);top:50%;left:50%;transform:translate(-50%,-50%);animation-delay:-8s;}
-  @keyframes drift{from{transform:translate(0,0) scale(1);}to{transform:translate(30px,20px) scale(1.1);}}
+  @keyframes drift{from{transform:translate(0,0);}to{transform:translate(30px,20px);}}
 
-  .wrap{
-    position:relative;z-index:1;
-    max-width:700px;width:100%;
-    text-align:center;
-  }
+  .wrap{position:relative;z-index:1;max-width:680px;width:100%;text-align:center;}
 
-  .badge{
-    display:inline-block;
-    font-size:10px;letter-spacing:3px;text-transform:uppercase;
-    color:rgba(201,168,76,0.8);
-    border:1px solid rgba(201,168,76,0.25);
-    padding:6px 20px;border-radius:20px;
-    margin-bottom:28px;
-    background:rgba(201,168,76,0.05);
-    animation:fadeIn 0.8s ease both;
-  }
-
-  h1{
-    font-family:'Playfair Display',serif;
-    font-size:clamp(38px,8vw,64px);
-    font-weight:400;
-    color:#F5F0FF;
-    line-height:1.1;
-    margin-bottom:14px;
-    animation:fadeIn 0.9s ease 0.1s both;
-  }
+  /* Brand */
+  .brand{font-family:'Playfair Display',serif;font-size:clamp(28px,5vw,42px);font-weight:400;color:#F5F0FF;letter-spacing:0.5px;margin-bottom:4px;}
+  .brand em{font-style:italic;color:#C9A84C;}
+  .brand-sub{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:rgba(201,168,76,0.45);margin-bottom:10px;}
+  .divider{width:40px;height:1px;background:rgba(201,168,76,0.3);margin:16px auto;}
+  .badge{display:inline-block;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(201,168,76,0.8);border:1px solid rgba(201,168,76,0.25);padding:6px 18px;border-radius:20px;margin-bottom:20px;background:rgba(201,168,76,0.05);}
+  h1{font-family:'Playfair Display',serif;font-size:clamp(32px,6vw,52px);font-weight:400;color:#F5F0FF;line-height:1.1;margin-bottom:10px;}
   h1 em{font-style:italic;color:#C9A84C;}
+  .sub{font-size:13.5px;color:rgba(255,255,255,0.38);font-weight:300;line-height:1.7;margin-bottom:16px;max-width:480px;margin-left:auto;margin-right:auto;}
 
-  .sub{
-    font-size:14px;color:rgba(255,255,255,0.4);
-    font-weight:300;line-height:1.7;
-    margin-bottom:52px;
-    animation:fadeIn 1s ease 0.2s both;
-  }
+  /* Trust bar */
+  .trust{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-bottom:40px;}
+  .trust-item{display:flex;align-items:center;gap:5px;font-size:11px;color:rgba(255,255,255,0.3);font-weight:300;}
 
-  .cards{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:20px;
-    animation:fadeIn 1s ease 0.3s both;
-  }
+  /* SERVICE CARDS */
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px;}
 
   .card{
-    border:1px solid rgba(255,255,255,0.08);
+    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(255,255,255,0.1);
     border-radius:20px;
-    padding:36px 28px;
-    cursor:pointer;
-    text-decoration:none;
-    display:block;
-    transition:all 0.3s ease;
-    position:relative;
-    overflow:hidden;
-    background:rgba(255,255,255,0.03);
+    padding:28px 22px 22px;
     text-align:left;
-    -webkit-tap-highlight-color: rgba(155,95,240,0.2);
+    text-decoration:none;
+    display:flex;
+    flex-direction:column;
+    transition:transform 0.2s, box-shadow 0.2s, border-color 0.2s;
   }
+  .card:hover{transform:translateY(-3px);}
+  .card-tirze:hover{box-shadow:0 16px 50px rgba(90,40,150,0.35);border-color:rgba(155,95,240,0.4);}
+  .card-lemon:hover{box-shadow:0 16px 50px rgba(180,130,30,0.25);border-color:rgba(201,168,76,0.4);}
 
-  .card::before{
-    content:'';
-    position:absolute;inset:0;
-    opacity:0;
-    transition:opacity 0.3s;
-    border-radius:20px;
+  .card-emoji{font-size:36px;margin-bottom:14px;display:block;}
+  .card-eyebrow{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;font-weight:500;margin-bottom:8px;}
+  .card-tirze .card-eyebrow{color:rgba(180,140,255,0.65);}
+  .card-lemon .card-eyebrow{color:rgba(201,168,76,0.65);}
+
+  .card h2{font-family:'Playfair Display',serif;font-size:22px;font-weight:400;color:#F5F0FF;margin-bottom:8px;line-height:1.2;}
+  .card p{font-size:12.5px;color:rgba(255,255,255,0.38);font-weight:300;line-height:1.6;margin-bottom:16px;flex:1;}
+
+  .card-price{margin-bottom:18px;}
+  .card-price .price-label{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:3px;}
+  .card-price .price-val{font-family:'Playfair Display',serif;font-size:24px;font-weight:400;color:#F5F0FF;}
+  .card-price .price-note{font-size:11px;color:rgba(255,255,255,0.25);font-weight:300;}
+
+  /* BIG BUTTONS */
+  .btn-tirze{
+    display:block;width:100%;padding:14px;
+    background:linear-gradient(135deg,#5A28B4,#9B5FF0);
+    color:white;font-family:'Jost',sans-serif;font-size:14px;font-weight:500;
+    border:none;border-radius:12px;text-align:center;text-decoration:none;
+    cursor:pointer;letter-spacing:0.5px;
+    transition:opacity 0.2s, transform 0.2s;
   }
-
-  .card-tirze::before{background:linear-gradient(135deg,rgba(90,40,150,0.25),rgba(120,60,180,0.1));}
-  .card-lemon::before{background:linear-gradient(135deg,rgba(180,130,30,0.2),rgba(201,168,76,0.08));}
-
-  .card:hover{transform:translateY(-4px);border-color:rgba(255,255,255,0.15);}
-  .card:hover::before{opacity:1;}
-  .card-tirze:hover{box-shadow:0 20px 60px rgba(90,40,150,0.3);}
-  .card-lemon:hover{box-shadow:0 20px 60px rgba(180,130,30,0.2);}
-
-  .card-icon{
-    font-size:36px;margin-bottom:20px;
-    display:inline-block;
-    animation:float 3s ease-in-out infinite;
+  .btn-lemon{
+    display:block;width:100%;padding:14px;
+    background:linear-gradient(135deg,#8B6010,#C9A84C);
+    color:#1A1508;font-family:'Jost',sans-serif;font-size:14px;font-weight:600;
+    border:none;border-radius:12px;text-align:center;text-decoration:none;
+    cursor:pointer;letter-spacing:0.5px;
+    transition:opacity 0.2s, transform 0.2s;
   }
-  .card-lemon .card-icon{animation-delay:-1.5s;}
-  @keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
+  .btn-tirze:hover,.btn-lemon:hover{opacity:0.9;transform:translateY(-1px);}
+  .btn-tirze:active,.btn-lemon:active{transform:scale(0.98);}
 
-  .card-tag{
-    font-size:9px;letter-spacing:2.5px;text-transform:uppercase;
-    font-weight:500;margin-bottom:10px;display:block;
-  }
-  .card-tirze .card-tag{color:rgba(180,140,255,0.7);}
-  .card-lemon .card-tag{color:rgba(201,168,76,0.7);}
-
-  .card h2{
-    font-family:'Playfair Display',serif;
-    font-size:24px;font-weight:400;
-    color:#F5F0FF;margin-bottom:10px;line-height:1.2;
-  }
-
-  .card p{
-    font-size:13px;color:rgba(255,255,255,0.4);
-    font-weight:300;line-height:1.6;margin-bottom:24px;
-  }
-
-  .card-arrow{
+  /* Injection guide link */
+  .guide-link{
     display:inline-flex;align-items:center;gap:8px;
-    font-size:12px;font-weight:500;letter-spacing:0.5px;
-    transition:gap 0.2s;
+    padding:12px 22px;
+    background:rgba(155,95,240,0.08);
+    border:1px solid rgba(155,95,240,0.22);
+    border-radius:10px;text-decoration:none;
+    font-size:13px;color:rgba(155,95,240,0.75);
+    font-weight:400;transition:all 0.2s;margin-bottom:32px;
   }
-  .card-tirze .card-arrow{color:rgba(180,140,255,0.8);}
-  .card-lemon .card-arrow{color:rgba(201,168,76,0.8);}
-  .card:hover .card-arrow{gap:12px;}
+  .guide-link:hover{background:rgba(155,95,240,0.14);color:rgba(155,95,240,0.95);}
 
-  .footer-note{
-    margin-top:36px;
-    font-size:11px;color:rgba(255,255,255,0.2);
-    font-weight:300;letter-spacing:0.3px;
-    animation:fadeIn 1s ease 0.5s both;
-  }
+  /* Shipping section */
+  .shipping{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:18px;padding:24px;margin-bottom:16px;text-align:left;}
+  .shipping-title{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:rgba(201,168,76,0.5);margin-bottom:8px;}
+  .shipping h3{font-family:'Playfair Display',serif;font-size:18px;font-weight:400;color:#F5F0FF;margin-bottom:8px;}
+  .shipping h3 em{font-style:italic;color:#C9A84C;}
+  .shipping p{font-size:12.5px;color:rgba(255,255,255,0.32);font-weight:300;line-height:1.7;margin-bottom:14px;}
+  .shipping-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;}
+  .shipping-item{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:12px;text-align:center;}
+  .shipping-item .si-icon{font-size:18px;margin-bottom:4px;}
+  .shipping-item .si-label{font-size:9px;text-transform:uppercase;letter-spacing:1px;color:rgba(201,168,76,0.55);margin-bottom:2px;}
+  .shipping-item .si-val{font-size:11.5px;color:rgba(255,255,255,0.38);font-weight:300;}
 
-  @keyframes fadeIn{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+  .footer{margin-top:20px;font-size:10px;color:rgba(255,255,255,0.12);letter-spacing:0.5px;}
+
+  @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+  .wrap>*{animation:fadeUp 0.7s ease both;}
+  .wrap>*:nth-child(2){animation-delay:0.05s;}
+  .wrap>*:nth-child(3){animation-delay:0.1s;}
+  .wrap>*:nth-child(4){animation-delay:0.15s;}
+  .wrap>*:nth-child(5){animation-delay:0.2s;}
+  .wrap>*:nth-child(6){animation-delay:0.25s;}
 
   @media(max-width:520px){
     .cards{grid-template-columns:1fr;}
+    .shipping-grid{grid-template-columns:1fr 1fr;}
+    .trust{gap:12px;}
   }
 </style>
 </head>
 <body>
 <div class="orb orb1"></div>
 <div class="orb orb2"></div>
-<div class="orb orb3"></div>
 
 <div class="wrap">
-  <div class="logo" style="margin-bottom:10px;animation:fadeIn 0.7s ease both;">
-    <div style="font-family:'Playfair Display',serif;font-size:clamp(28px,5vw,40px);font-weight:400;color:#F5F0FF;letter-spacing:1px;">
-      Bella's <em style="font-style:italic;color:#C9A84C;">Wellness</em> Hub
-    </div>
-    <div style="font-size:10px;letter-spacing:4px;text-transform:uppercase;color:rgba(201,168,76,0.5);margin-top:4px;font-family:'Jost',sans-serif;">✦ Physician-Guided Aesthetics & Wellness ✦</div>
-  </div>
-  <div style="width:40px;height:1px;background:rgba(201,168,76,0.3);margin:18px auto 24px;"></div>
-  <div class="badge">🩺 Physician-Guided · Client Portal</div>
-  <h1>How can we<br/><em>help you today?</em></h1>
-  <p class="sub">Evidence-based, physician-guided programs designed for your safety and results.<br/>All information is kept strictly confidential.</p>
 
-  <!-- Trust bar -->
-  <div style="display:flex;justify-content:center;gap:24px;margin-bottom:40px;flex-wrap:wrap;animation:fadeIn 1s ease 0.25s both;">
-    <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:rgba(255,255,255,0.35);font-weight:300;">
-      <span style="color:rgba(201,168,76,0.7);">🩺</span> Physician-Guided
-    </div>
-    <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:rgba(255,255,255,0.35);font-weight:300;">
-      <span style="color:rgba(201,168,76,0.7);">🔬</span> Evidence-Based
-    </div>
-    <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:rgba(255,255,255,0.35);font-weight:300;">
-      <span style="color:rgba(201,168,76,0.7);">🔒</span> Strictly Confidential
-    </div>
-    <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:rgba(255,255,255,0.35);font-weight:300;">
-      <span style="color:rgba(201,168,76,0.7);">✦</span> Personalized Care
+  <!-- Brand -->
+  <div>
+    <div class="brand">Bella's <em>Wellness</em> Hub</div>
+    <div class="brand-sub">✦ Physician-Guided Aesthetics & Wellness ✦</div>
+    <div class="divider"></div>
+  </div>
+
+  <!-- Hero -->
+  <div>
+    <div class="badge">🩺 Physician-Guided · Client Portal</div>
+    <h1>How can we<br/><em>help you today?</em></h1>
+    <p class="sub">Evidence-based, physician-guided programs designed for your safety and best results. Select a service below to get started.</p>
+    <div class="trust">
+      <div class="trust-item"><span>🩺</span> Physician-Guided</div>
+      <div class="trust-item"><span>🔬</span> Evidence-Based</div>
+      <div class="trust-item"><span>🔒</span> Confidential</div>
+      <div class="trust-item"><span>✦</span> Personalized Care</div>
     </div>
   </div>
 
-  <!-- Real Results Section -->
-  <div style="margin-bottom:44px;animation:fadeIn 1s ease 0.3s both;">
-    <div style="font-size:9px;letter-spacing:3px;text-transform:uppercase;color:rgba(201,168,76,0.5);margin-bottom:12px;">✦ Real Results, Real People ✦</div>
-    <div style="font-family:'Playfair Display',serif;font-size:clamp(22px,4vw,32px);font-weight:400;color:#F5F0FF;margin-bottom:6px;line-height:1.2;">Small steps toward a <em style="font-style:italic;color:#C9A84C;">healthier you.</em></div>
-    <div style="font-size:12.5px;color:rgba(255,255,255,0.3);font-weight:300;margin-bottom:24px;">Based on published clinical trials and real-world data.</div>
-
-    <!-- Stats row -->
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:16px;">
-      <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:20px 14px;text-align:center;">
-        <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:400;color:#9B5FF0;line-height:1;">22.5%</div>
-        <div style="font-size:10px;color:rgba(255,255,255,0.35);margin-top:6px;font-weight:300;line-height:1.5;">avg. body weight reduction at 72 weeks</div>
-        <div style="font-size:9px;color:rgba(255,255,255,0.2);margin-top:4px;">SURMOUNT-1 Trial</div>
-      </div>
-      <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:20px 14px;text-align:center;">
-        <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:400;color:#C9A84C;line-height:1;">90%</div>
-        <div style="font-size:10px;color:rgba(255,255,255,0.35);margin-top:6px;font-weight:300;line-height:1.5;">of real-world patients lost ≥5% body weight at 12 months</div>
-        <div style="font-size:9px;color:rgba(255,255,255,0.2);margin-top:4px;">Mayo Clinic, 2024</div>
-      </div>
-      <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:20px 14px;text-align:center;">
-        <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:400;color:#9B5FF0;line-height:1;">−17kg</div>
-        <div style="font-size:10px;color:rgba(255,255,255,0.35);margin-top:6px;font-weight:300;line-height:1.5;">greatest avg. weight loss in women with PCOS vs. other GLP-1s</div>
-        <div style="font-size:9px;color:rgba(255,255,255,0.2);margin-top:4px;">PMC Scoping Review, 2024</div>
-      </div>
-    </div>
-
-    <!-- Lemon Bottle result -->
-    <div style="background:rgba(201,168,76,0.05);border:1px solid rgba(201,168,76,0.12);border-radius:14px;padding:18px 20px;display:flex;align-items:center;gap:16px;">
-      <div style="font-size:28px;flex-shrink:0;">🍋</div>
-      <div style="text-align:left;">
-        <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(201,168,76,0.6);margin-bottom:5px;">Lemon Bottle Body Contouring</div>
-        <div style="font-size:13px;color:rgba(255,255,255,0.6);font-weight:300;line-height:1.7;">Clients report visible reduction in targeted fat areas — chin, arms, belly, and thighs — after a series of sessions, with results typically noticeable within 2–4 weeks post-treatment. Best results seen alongside a healthy lifestyle. 🌿</div>
-      </div>
-    </div>
-
-    <div style="margin-top:12px;font-size:11px;color:rgba(255,255,255,0.18);font-weight:300;line-height:1.6;">⚠️ Individual results may vary. All programs are physician-guided and medically assessed. These figures are from published peer-reviewed studies and real-world clinical data.</div>
-  </div>
-
+  <!-- SERVICE CARDS -->
   <div class="cards">
-    <a href="tirzepatide.html" class="card card-tirze" onclick="window.location.href='tirzepatide.html'">
-      <div class="card-icon">💉</div>
-      <span class="card-tag">🩺 Physician-Guided · Weight Management</span>
-      <h2>Tirzepatide Program</h2>
-      <p>Medically assessed and physician-guided weight management. Includes full health history, baseline labs, and safety screening.</p>
-      <div style="margin-bottom:18px;">
-        <div style="font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(180,140,255,0.5);margin-bottom:4px;">Starting at</div>
-        <div style="font-family:'Playfair Display',serif;font-size:26px;font-weight:400;color:#F5F0FF;line-height:1;">₱2,199 <span style="font-size:13px;color:rgba(255,255,255,0.3);font-family:'Jost',sans-serif;font-weight:300;">/ box · PF included</span></div>
-      </div>
-      <div style="width:100%;padding:14px;background:linear-gradient(135deg,#5A28B4,#9B5FF0);border-radius:12px;text-align:center;color:white;font-family:'Jost',sans-serif;font-size:14px;font-weight:500;letter-spacing:0.5px;">
-        Begin Intake →
-      </div>
-    </a>
 
-    <a href="lemon-bottle.html" class="card card-lemon" onclick="window.location.href='lemon-bottle.html'">
-      <div class="card-icon">🍋</div>
-      <span class="card-tag">Body Contouring</span>
+    <!-- Tirzepatide -->
+    <div class="card card-tirze">
+      <span class="card-emoji">💉</span>
+      <div class="card-eyebrow">🩺 Physician-Guided · Weight Management</div>
+      <h2>Tirzepatide Program</h2>
+      <p>Medically assessed and physician-guided weight management. Full health history, baseline labs, and safety screening included.</p>
+      <div class="card-price">
+        <div class="price-label">Starting at</div>
+        <div class="price-val">₱2,199</div>
+        <div class="price-note">per box · PF included</div>
+      </div>
+      <a href="tirzepatide.html" class="btn-tirze">Begin Intake Form →</a>
+    </div>
+
+    <!-- Lemon Bottle -->
+    <div class="card card-lemon">
+      <span class="card-emoji">🍋</span>
+      <div class="card-eyebrow">Body Contouring</div>
       <h2>Lemon Bottle Session</h2>
-      <p>Professional body contouring session with personalized assessment, target area selection, and Saturday scheduling.</p>
-      <div style="margin-bottom:18px;">
-        <div style="font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(201,168,76,0.5);margin-bottom:4px;">Starting at</div>
-        <div style="font-family:'Playfair Display',serif;font-size:26px;font-weight:400;color:#F5F0FF;line-height:1;">₱2,499 <span style="font-size:13px;color:rgba(255,255,255,0.3);font-family:'Jost',sans-serif;font-weight:300;">/ vial · PF included</span></div>
+      <p>Professional body contouring with personalized assessment, target area selection, and Saturday-only scheduling.</p>
+      <div class="card-price">
+        <div class="price-label">Starting at</div>
+        <div class="price-val">₱2,499</div>
+        <div class="price-note">per vial · PF included</div>
       </div>
-      <div style="width:100%;padding:14px;background:linear-gradient(135deg,#8B6010,#C9A84C);border-radius:12px;text-align:center;color:#1A1508;font-family:'Jost',sans-serif;font-size:14px;font-weight:600;letter-spacing:0.5px;">
-        Book Assessment →
-      </div>
-    </a>
+      <a href="lemon-bottle.html" class="btn-lemon">Book Assessment →</a>
+    </div>
+
   </div>
 
-  <p class="footer-note">🔒 Your data is confidential and used solely for your care and safety.</p>
-  <p style="margin-top:12px;font-size:10px;color:rgba(255,255,255,0.12);font-family:'Jost',sans-serif;letter-spacing:1px;">© Bella's Wellness Hub · All rights reserved</p>
+  <!-- Quick Links -->
+  <div style="display:flex;gap:10px;justify-content:center;margin-bottom:32px;flex-wrap:wrap;">
+    <a href="injection-guide.html" class="guide-link">💉 Self-Injection Guide →</a>
+    <a href="payment.html" class="guide-link" style="color:rgba(201,168,76,0.75);border-color:rgba(201,168,76,0.22);background:rgba(201,168,76,0.06);">💳 Payment Methods →</a>
+  </div>
 
-  <!-- Shipping info -->
-  <div style="margin-top:36px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:18px;padding:24px 28px;animation:fadeIn 1s ease 0.6s both;">
-    <div style="font-size:9px;letter-spacing:3px;text-transform:uppercase;color:rgba(201,168,76,0.5);margin-bottom:10px;">🚚 Nationwide Shipping Available</div>
-    <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:400;color:#F5F0FF;margin-bottom:8px;">Not in the area? <em style="font-style:italic;color:#C9A84C;">We ship anywhere in the Philippines.</em></div>
-    <div style="font-size:12.5px;color:rgba(255,255,255,0.35);font-weight:300;line-height:1.7;margin-bottom:16px;">Tirzepatide bundles are carefully packed with gel packs and insulated packaging to maintain potency during transit. Shipping fee is shouldered by the client.</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:16px;">
-      <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:12px;text-align:center;">
-        <div style="font-size:20px;margin-bottom:4px;">📦</div>
-        <div style="font-size:10px;text-transform:uppercase;letter-spacing:1px;color:rgba(201,168,76,0.6);margin-bottom:3px;">Packaging</div>
-        <div style="font-size:12px;color:rgba(255,255,255,0.4);font-weight:300;">Insulated + gel packs</div>
+  <!-- Shipping -->
+  <div class="shipping">
+    <div class="shipping-title">🚚 Nationwide Shipping Available</div>
+    <h3>Not in the area? <em>We ship anywhere in the Philippines.</em></h3>
+    <p>Tirzepatide bundles are carefully packed with gel packs and insulated packaging. Shipping fee is shouldered by the client. We ship Monday–Wednesday only.</p>
+    <div class="shipping-grid">
+      <div class="shipping-item">
+        <div class="si-icon">📦</div>
+        <div class="si-label">Packaging</div>
+        <div class="si-val">Insulated + gel packs</div>
       </div>
-      <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:12px;text-align:center;">
-        <div style="font-size:20px;margin-bottom:4px;">🚀</div>
-        <div style="font-size:10px;text-transform:uppercase;letter-spacing:1px;color:rgba(201,168,76,0.6);margin-bottom:3px;">Courier</div>
-        <div style="font-size:12px;color:rgba(255,255,255,0.4);font-weight:300;">J&T · Ninja Van · LBC</div>
+      <div class="shipping-item">
+        <div class="si-icon">🚀</div>
+        <div class="si-label">Courier</div>
+        <div class="si-val">J&T · Ninja Van · LBC</div>
       </div>
-      <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:12px;text-align:center;">
-        <div style="font-size:20px;margin-bottom:4px;">💳</div>
-        <div style="font-size:10px;text-transform:uppercase;letter-spacing:1px;color:rgba(201,168,76,0.6);margin-bottom:3px;">Payment</div>
-        <div style="font-size:12px;color:rgba(255,255,255,0.4);font-weight:300;">GCash · Bank Transfer</div>
+      <div class="shipping-item">
+        <div class="si-icon">📅</div>
+        <div class="si-label">Ship Days</div>
+        <div class="si-val">Mon – Wed only</div>
       </div>
     </div>
-    <div style="font-size:11.5px;color:rgba(255,255,255,0.25);font-weight:300;line-height:1.7;">⚠️ We ship Mon–Wed only to avoid packages sitting over the weekend. Shipped orders include a complete self-injection guide prepared by your physician.</div>
+
+    <!-- How to Order -->
+    <div style="margin-top:18px;padding:16px 18px;background:rgba(155,95,240,0.07);border:1px solid rgba(155,95,240,0.18);border-radius:12px;">
+      <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(155,95,240,0.7);font-weight:500;margin-bottom:10px;">📋 How to Order for Shipping</div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div style="display:flex;align-items:flex-start;gap:10px;font-size:12.5px;color:rgba(255,255,255,0.45);font-weight:300;line-height:1.6;">
+          <div style="width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#5A28B4,#9B5FF0);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:white;flex-shrink:0;">1</div>
+          <div>Complete your <strong style="color:rgba(255,255,255,0.65);">intake form</strong> above first</div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:10px;font-size:12.5px;color:rgba(255,255,255,0.45);font-weight:300;line-height:1.6;">
+          <div style="width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#5A28B4,#9B5FF0);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:white;flex-shrink:0;">2</div>
+          <div>Send your order details via <strong style="color:rgba(255,255,255,0.65);">WhatsApp</strong> — include your Full Name, Phone Number, and Complete Shipping Address</div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:10px;font-size:12.5px;color:rgba(255,255,255,0.45);font-weight:300;line-height:1.6;">
+          <div style="width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#5A28B4,#9B5FF0);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:white;flex-shrink:0;">3</div>
+          <div><strong style="color:rgba(255,255,255,0.65);">Pay in full</strong> via GCash, Maya, or MariBank — we process your order upon payment confirmation</div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:10px;font-size:12.5px;color:rgba(255,255,255,0.45);font-weight:300;line-height:1.6;">
+          <div style="width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#5A28B4,#9B5FF0);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:white;flex-shrink:0;">4</div>
+          <div>We ship and send your <strong style="color:rgba(255,255,255,0.65);">tracking number</strong> via WhatsApp 🌿</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/639391770511" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:10px;margin-top:14px;padding:14px;background:#25D366;border-radius:12px;text-decoration:none;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+      <span style="font-size:20px;">💬</span>
+      <div style="text-align:left;">
+        <div style="font-size:13px;font-weight:600;color:white;font-family:'Jost',sans-serif;">Message us on WhatsApp</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.8);font-weight:300;font-family:'Jost',sans-serif;">+63 939 177 0511</div>
+      </div>
+    </a>
+
+    <!-- Payment Methods -->
+    <div style="margin-top:14px;">
+      <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(201,168,76,0.5);margin-bottom:10px;">💳 Payment Methods — Full Payment Upfront</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:12px 14px;display:flex;align-items:center;gap:10px;">
+          <div style="font-size:22px;">🏦</div>
+          <div>
+            <div style="font-size:12px;font-weight:500;color:rgba(255,255,255,0.6);">MariBank</div>
+            <div style="font-size:11px;color:rgba(255,255,255,0.3);font-weight:300;">InstaPay · ****7339</div>
+            <div style="font-size:10.5px;color:rgba(255,255,255,0.25);font-weight:300;">GLORYBEL TATOY</div>
+          </div>
+        </div>
+        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:12px 14px;display:flex;align-items:center;gap:10px;">
+          <div style="font-size:22px;">💚</div>
+          <div>
+            <div style="font-size:12px;font-weight:500;color:rgba(255,255,255,0.6);">Maya</div>
+            <div style="font-size:11px;color:rgba(255,255,255,0.3);font-weight:300;">@agatha2196</div>
+            <div style="font-size:10.5px;color:rgba(255,255,255,0.25);font-weight:300;">GLORYBEL TATOY</div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:8px;font-size:11px;color:rgba(255,255,255,0.2);font-weight:300;line-height:1.6;text-align:center;">⚠️ No COD. Orders are processed only upon payment confirmation. Always send your proof of payment via WhatsApp.</div>
+    </div>
   </div>
 
-  <!-- Injection guide link -->
-  <div style="margin-top:16px;text-align:center;animation:fadeIn 1s ease 0.7s both;">
-    <a href="injection-guide.html" style="display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:rgba(155,95,240,0.1);border:1px solid rgba(155,95,240,0.25);border-radius:10px;text-decoration:none;font-size:13px;color:rgba(155,95,240,0.8);font-family:'Jost',sans-serif;font-weight:400;transition:all 0.2s;">
-      💉 View Self-Injection Guide →
-    </a>
+  <div class="footer">
+    🔒 All information is strictly confidential and used solely for your care.<br/>
+    © Bella's Wellness Hub · All rights reserved
   </div>
+
 </div>
 </body>
 </html>
