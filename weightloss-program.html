@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>MedGlow Weight Loss Program — MedGlow Wellness</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --bg:#0D0D12;--surface:rgba(255,255,255,0.04);
+    --border:rgba(255,255,255,0.08);
+    --violet:#9B5FF0;--violet-dim:rgba(155,95,240,0.12);
+    --gold:#C9A84C;--gold-dim:rgba(201,168,76,0.1);
+    --text:#F0EBFF;--muted:rgba(255,255,255,0.38);
+    --green-dim:rgba(76,175,80,0.07);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Jost',sans-serif;background:var(--bg);color:var(--text);
+    min-height:100vh;padding:48px 20px 80px;
+    background-image:
+      radial-gradient(ellipse 70% 50% at 15% 0%,rgba(90,40,180,0.15) 0%,transparent 65%),
+      radial-gradient(ellipse 50% 40% at 85% 100%,rgba(155,95,240,0.08) 0%,transparent 60%);}
+  .wrap{max-width:700px;margin:0 auto;}
+  .back{display:inline-flex;align-items:center;gap:8px;color:var(--muted);font-size:13px;font-weight:300;text-decoration:none;margin-bottom:36px;transition:color 0.2s;}
+  .back:hover{color:var(--text);}
+
+  /* Header */
+  .header{text-align:center;margin-bottom:40px;animation:up 0.7s ease both;}
+  .logo-wrap{margin-bottom:10px;}
+  .tag{display:inline-block;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--violet);border:1px solid rgba(155,95,240,0.3);padding:5px 16px;border-radius:20px;margin-bottom:16px;background:var(--violet-dim);}
+  h1{font-family:'Playfair Display',serif;font-size:clamp(28px,5vw,46px);font-weight:400;line-height:1.15;margin-bottom:10px;}
+  h1 em{font-style:italic;color:var(--violet);}
+  .subtitle{font-size:13.5px;color:var(--muted);font-weight:300;line-height:1.7;max-width:500px;margin:0 auto;}
+
+  /* Trust bar */
+  .trust{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin:20px 0 32px;}
+  .trust-item{display:flex;align-items:center;gap:5px;font-size:11px;color:rgba(255,255,255,0.3);font-weight:300;}
+
+  /* Stats */
+  .stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:24px;animation:up 0.7s ease 0.05s both;}
+  .stat{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px 14px;text-align:center;}
+  .stat-num{font-family:'Playfair Display',serif;font-size:28px;font-weight:400;color:var(--violet);line-height:1;}
+  .stat-label{font-size:11px;color:var(--muted);font-weight:300;line-height:1.5;margin-top:6px;}
+  .stat-source{font-size:9px;color:rgba(255,255,255,0.18);margin-top:3px;}
+
+  /* Section */
+  .section{background:var(--surface);border:1px solid var(--border);border-radius:16px;margin-bottom:14px;overflow:hidden;animation:up 0.7s ease both;}
+  .sec-head{padding:18px 24px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:14px;background:rgba(255,255,255,0.02);}
+  .sec-icon{width:34px;height:34px;border-radius:9px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:15px;background:linear-gradient(135deg,rgba(90,40,180,0.5),rgba(155,95,240,0.3));border:1px solid rgba(155,95,240,0.22);}
+  .sec-head h2{font-family:'Playfair Display',serif;font-size:17px;font-weight:400;}
+  .sec-head span{font-size:11px;color:var(--muted);margin-left:auto;font-weight:300;}
+  .sec-body{padding:20px 24px;}
+  .sec-body p{font-size:13px;color:var(--muted);font-weight:300;line-height:1.8;margin-bottom:10px;}
+
+  /* What's included list */
+  .inc-list{display:flex;flex-direction:column;gap:8px;}
+  .inc-item{display:flex;align-items:flex-start;gap:10px;font-size:13px;color:rgba(255,255,255,0.55);font-weight:300;line-height:1.6;}
+  .inc-check{width:18px;height:18px;border-radius:50%;background:linear-gradient(135deg,#5A28B4,var(--violet));display:flex;align-items:center;justify-content:center;font-size:9px;color:white;flex-shrink:0;margin-top:2px;}
+
+  /* Packages */
+  .pkg-wrap{display:flex;flex-direction:column;gap:12px;margin-bottom:14px;}
+  .pkg{border-radius:14px;padding:18px 20px;display:flex;justify-content:space-between;align-items:center;position:relative;overflow:hidden;cursor:pointer;transition:all 0.2s;}
+  .pkg:hover{transform:translateY(-1px);}
+  .pkg-starter{background:rgba(155,95,240,0.07);border:1px solid rgba(155,95,240,0.2);}
+  .pkg-standard{background:rgba(155,95,240,0.13);border:1.5px solid rgba(155,95,240,0.45);}
+  .pkg-premium{background:rgba(201,168,76,0.07);border:1px solid rgba(201,168,76,0.28);}
+  .pkg-badge{position:absolute;top:0;right:0;background:linear-gradient(135deg,#5A28B4,var(--violet));font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:white;padding:4px 12px;border-radius:0 14px 0 10px;font-weight:500;}
+  .pkg-badge.gold{background:linear-gradient(135deg,#8B6010,var(--gold));}
+  .pkg-left .pkg-name{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;font-weight:500;margin-bottom:4px;}
+  .pkg-starter .pkg-name{color:rgba(180,140,255,0.7);}
+  .pkg-standard .pkg-name{color:rgba(180,140,255,0.9);}
+  .pkg-premium .pkg-name{color:rgba(201,168,76,0.8);}
+  .pkg-title{font-family:'Playfair Display',serif;font-size:17px;color:var(--text);margin-bottom:3px;}
+  .pkg-desc{font-size:12px;color:var(--muted);font-weight:300;line-height:1.5;}
+  .pkg-right{text-align:right;flex-shrink:0;}
+  .pkg-price{font-family:'Playfair Display',serif;font-size:26px;color:var(--text);line-height:1;}
+  .pkg-premium .pkg-price{color:var(--gold);}
+  .pkg-note{font-size:10px;color:rgba(255,255,255,0.25);font-weight:300;margin-top:3px;}
+  .pkg-savings{font-size:10px;color:rgba(76,175,80,0.7);font-weight:400;margin-top:2px;}
+
+  /* Timeline */
+  .timeline{display:flex;flex-direction:column;gap:0;}
+  .tl-item{display:flex;gap:16px;position:relative;}
+  .tl-item:not(:last-child)::before{content:'';position:absolute;left:15px;top:32px;width:1px;height:calc(100% - 10px);background:rgba(155,95,240,0.2);}
+  .tl-dot{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#5A28B4,var(--violet));display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500;color:white;flex-shrink:0;margin-top:2px;}
+  .tl-content{padding-bottom:20px;}
+  .tl-week{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(155,95,240,0.6);margin-bottom:3px;font-weight:500;}
+  .tl-title{font-size:14px;font-weight:500;color:rgba(255,255,255,0.7);margin-bottom:4px;}
+  .tl-desc{font-size:12.5px;color:var(--muted);font-weight:300;line-height:1.6;}
+
+  /* Who is this for */
+  .who-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+  .who-item{background:rgba(155,95,240,0.05);border:1px solid rgba(155,95,240,0.12);border-radius:10px;padding:12px 14px;display:flex;align-items:flex-start;gap:8px;font-size:12.5px;color:rgba(255,255,255,0.5);font-weight:300;line-height:1.5;}
+  .who-icon{font-size:16px;flex-shrink:0;}
+
+  /* CTA buttons */
+  .btn-primary{display:block;width:100%;padding:16px;background:linear-gradient(135deg,#5A28B4,#9B5FF0);color:white;font-family:'Jost',sans-serif;font-size:15px;font-weight:500;border:none;border-radius:12px;text-align:center;text-decoration:none;cursor:pointer;letter-spacing:0.5px;transition:all 0.25s;margin-bottom:10px;}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 40px rgba(90,40,180,0.45);}
+  .btn-secondary{display:block;width:100%;padding:13px;background:transparent;border:1px solid rgba(155,95,240,0.3);color:rgba(155,95,240,0.7);font-family:'Jost',sans-serif;font-size:14px;font-weight:400;border-radius:12px;text-align:center;text-decoration:none;transition:all 0.2s;margin-bottom:10px;}
+  .btn-secondary:hover{background:var(--violet-dim);color:rgba(155,95,240,0.95);}
+  .btn-wa{display:flex;align-items:center;justify-content:center;gap:10px;padding:14px;background:#25D366;border-radius:12px;text-decoration:none;transition:opacity 0.2s;}
+  .btn-wa:hover{opacity:0.88;}
+  .btn-wa span{font-size:14px;font-weight:500;color:white;font-family:'Jost',sans-serif;}
+
+  .footer-note{text-align:center;margin-top:24px;font-size:10px;color:rgba(255,255,255,0.12);letter-spacing:0.5px;}
+  @keyframes up{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+  @media(max-width:560px){
+    .stats{grid-template-columns:1fr 1fr;}
+    .who-grid{grid-template-columns:1fr;}
+    .pkg{flex-direction:column;align-items:flex-start;gap:12px;}
+    .pkg-right{text-align:left;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a href="index.html" class="back">← Back to Portal</a>
+
+  <!-- Header -->
+  <div class="header">
+    <div class="logo-wrap">
+      <img src="logo.png" alt="MedGlow Wellness" style="height:80px;width:auto;object-fit:contain;"/>
+    </div>
+    <div class="tag">🩺 Physician-Guided · Weight Management</div>
+    <h1>MedGlow<br/><em>Weight Loss Program</em></h1>
+    <p class="subtitle">A complete, physician-guided weight loss program using Tirzepatide — the most clinically proven GLP-1/GIP dual agonist available today. Medically assessed, evidence-based, and fully supported. 🌿</p>
+    <div class="trust">
+      <div class="trust-item"><span>🩺</span> Physician-Guided</div>
+      <div class="trust-item"><span>🔬</span> Evidence-Based</div>
+      <div class="trust-item"><span>📋</span> Full Assessment</div>
+      <div class="trust-item"><span>💬</span> Direct Support</div>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-num">22.5%</div>
+      <div class="stat-label">avg. body weight reduction at 72 weeks</div>
+      <div class="stat-source">SURMOUNT-1 Trial</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">90%</div>
+      <div class="stat-label">of real-world patients lost ≥5% body weight</div>
+      <div class="stat-source">Mayo Clinic, 2024</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">−17kg</div>
+      <div class="stat-label">greatest avg. loss in women with PCOS</div>
+      <div class="stat-source">PMC Review, 2024</div>
+    </div>
+  </div>
+
+  <!-- What is it -->
+  <div class="section">
+    <div class="sec-head"><div class="sec-icon">💊</div><h2>What is the MedGlow Weight Loss Program?</h2></div>
+    <div class="sec-body">
+      <p>The MedGlow Weight Loss Program is a <strong style="color:rgba(255,255,255,0.65);">structured, physician-guided program</strong> using Tirzepatide — a dual GLP-1/GIP receptor agonist clinically proven to produce significant, sustained weight loss.</p>
+      <p>Unlike buying injections online from random sellers, our program includes a complete medical assessment, personalized dosing, monthly monitoring, and direct physician access throughout your journey. You are never alone in this program. 🌿</p>
+      <p style="margin-bottom:16px;">This program is ideal for:</p>
+      <div class="who-grid">
+        <div class="who-item"><div class="who-icon">⚖️</div>Adults with overweight or obesity (BMI ≥27)</div>
+        <div class="who-item"><div class="who-icon">🩸</div>Type 2 Diabetes or Prediabetes</div>
+        <div class="who-item"><div class="who-icon">🌸</div>Women with PCOS and insulin resistance</div>
+        <div class="who-item"><div class="who-icon">❤️</div>Those with weight-related health concerns</div>
+        <div class="who-item"><div class="who-icon">🏃</div>People who've tried diet & exercise without results</div>
+        <div class="who-item"><div class="who-icon">🎯</div>Anyone wanting a medically supervised approach</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- What's included -->
+  <div class="section">
+    <div class="sec-head"><div class="sec-icon">✅</div><h2>What's Included in Every Program</h2><span>All packages</span></div>
+    <div class="sec-body">
+      <div class="inc-list">
+        <div class="inc-item"><div class="inc-check">✓</div>Complete physician-guided medical intake & assessment</div>
+        <div class="inc-item"><div class="inc-check">✓</div>Contraindication & safety screening before starting</div>
+        <div class="inc-item"><div class="inc-check">✓</div>Tirzepatide 15mg vial(s) + all necessary supplies</div>
+        <div class="inc-item"><div class="inc-check">✓</div>Evidence-based dosing protocol (2.5mg → escalation)</div>
+        <div class="inc-item"><div class="inc-check">✓</div>Self-injection guide prepared by your physician</div>
+        <div class="inc-item"><div class="inc-check">✓</div>Monthly weight, vitals & side effect monitoring</div>
+        <div class="inc-item"><div class="inc-check">✓</div>Lifestyle guidance — exercise, nutrition, hydration</div>
+        <div class="inc-item"><div class="inc-check">✓</div>Direct access to your physician via WhatsApp/Messenger</div>
+        <div class="inc-item"><div class="inc-check">✓</div>Dose reassessment at Week 5 before escalation</div>
+        <div class="inc-item"><div class="inc-check">✓</div>Emergency support — message anytime for concerns</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Programs / Packages -->
+  <div class="section">
+    <div class="sec-head"><div class="sec-icon">📋</div><h2>Choose Your Program</h2><span>PF included in all</span></div>
+    <div class="sec-body">
+      <div class="pkg-wrap">
+
+        <div class="pkg pkg-starter">
+          <div class="pkg-left">
+            <div class="pkg-name">🌿 Starter Program</div>
+            <div class="pkg-title">4 Weeks · 1 Vial</div>
+            <div class="pkg-desc">1 vial + supplies + physician monitoring<br/>Perfect for first-timers wanting to try the program</div>
+          </div>
+          <div class="pkg-right">
+            <div class="pkg-price">₱2,299</div>
+            <div class="pkg-note">per program</div>
+          </div>
+        </div>
+
+        <div class="pkg pkg-standard">
+          <div class="pkg-badge">Most Popular</div>
+          <div class="pkg-left">
+            <div class="pkg-name">💜 Standard Program</div>
+            <div class="pkg-title">8 Weeks · 2 Vials</div>
+            <div class="pkg-desc">2 vials + supplies + physician monitoring<br/>Best balance of results and value</div>
+          </div>
+          <div class="pkg-right">
+            <div class="pkg-price">₱4,299</div>
+            <div class="pkg-note">per program</div>
+            <div class="pkg-savings">Save ₱299 vs 2x Starter</div>
+          </div>
+        </div>
+
+        <div class="pkg pkg-premium">
+          <div class="pkg-badge gold">Best Results</div>
+          <div class="pkg-left">
+            <div class="pkg-name">✨ Premium Program</div>
+            <div class="pkg-title">12 Weeks · 3 Vials</div>
+            <div class="pkg-desc">3 vials + supplies + full program support<br/>Maximum results with complete physician guidance</div>
+          </div>
+          <div class="pkg-right">
+            <div class="pkg-price">₱5,999</div>
+            <div class="pkg-note">per program</div>
+            <div class="pkg-savings">Save ₱898 vs 3x Starter</div>
+          </div>
+        </div>
+
+      </div>
+      <div style="font-size:11.5px;color:rgba(255,255,255,0.22);font-weight:300;line-height:1.6;text-align:center;">All programs require a completed intake form and physician clearance before starting. Labs (CBC, FBS, SGPT/SGOT, Thyroid, Creatinine) required as baseline.</div>
+    </div>
+  </div>
+
+  <!-- How it works / Timeline -->
+  <div class="section">
+    <div class="sec-head"><div class="sec-icon">🗓️</div><h2>How the Program Works</h2><span>Step by step</span></div>
+    <div class="sec-body">
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot">1</div>
+          <div class="tl-content">
+            <div class="tl-week">Before You Start</div>
+            <div class="tl-title">Complete Your Intake Form</div>
+            <div class="tl-desc">Fill out your medical history, vitals, and contraindication screening. Upload baseline labs. Your physician reviews everything within 24–48 hours.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot">2</div>
+          <div class="tl-content">
+            <div class="tl-week">Week 1–4</div>
+            <div class="tl-title">Start at 2.5mg Weekly</div>
+            <div class="tl-desc">Begin with the lowest dose to allow your body to adjust. Weekly self-injection using your physician-prepared guide. Monitor weight, appetite, and any side effects.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot">3</div>
+          <div class="tl-content">
+            <div class="tl-week">Week 5 — Reassessment</div>
+            <div class="tl-title">Physician Check-In Required</div>
+            <div class="tl-desc">Message MedGlow Wellness before changing your dose. Your physician will assess your weight loss, tolerance, and side effects before clearing you to escalate to 5mg.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot">4</div>
+          <div class="tl-content">
+            <div class="tl-week">Week 5 Onwards</div>
+            <div class="tl-title">Gradual Dose Escalation</div>
+            <div class="tl-desc">If cleared, dose increases every 4 weeks (5mg → 7.5mg → 10mg) based on your response. Every escalation requires physician approval.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot">5</div>
+          <div class="tl-content">
+            <div class="tl-week">Every 4 Weeks</div>
+            <div class="tl-title">Monthly Monitoring</div>
+            <div class="tl-desc">Send your weight, blood pressure, heart rate, and side effect notes. Labs repeated every 3–6 months. Dose adjusted as needed.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot">✦</div>
+          <div class="tl-content">
+            <div class="tl-week">Throughout the Program</div>
+            <div class="tl-title">Always Available</div>
+            <div class="tl-desc">Message MedGlow Wellness anytime via WhatsApp or Messenger for questions, concerns, or any unwanted events. You are never alone in this program. 🌿</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lifestyle reminder -->
+  <div style="background:rgba(76,175,80,0.06);border:1px solid rgba(76,175,80,0.16);border-radius:14px;padding:20px 22px;margin-bottom:14px;animation:up 0.7s ease both;">
+    <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(76,175,80,0.65);font-weight:500;margin-bottom:12px;">🌿 Program Lifestyle Guidelines</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+      <div style="font-size:12.5px;color:var(--muted);font-weight:300;display:flex;gap:8px;"><span>🏃</span>150 mins exercise/week</div>
+      <div style="font-size:12.5px;color:var(--muted);font-weight:300;display:flex;gap:8px;"><span>💪</span>Strength training 2x/week</div>
+      <div style="font-size:12.5px;color:var(--muted);font-weight:300;display:flex;gap:8px;"><span>🍽️</span>Eat 3 meals daily — no skipping</div>
+      <div style="font-size:12.5px;color:var(--muted);font-weight:300;display:flex;gap:8px;"><span>💧</span>Hydrate + prioritize protein</div>
+    </div>
+    <div style="margin-top:10px;font-size:11.5px;color:rgba(255,255,255,0.22);font-weight:300;line-height:1.6;">Tirzepatide is a powerful tool — not a shortcut. Best results are seen when combined with healthy lifestyle habits. ⚠️ Skipping meals may lead to hypoglycemia.</div>
+  </div>
+
+  <!-- CTA -->
+  <div style="animation:up 0.7s ease 0.1s both;">
+    <a href="tirzepatide.html" class="btn-primary">Begin My Intake Form →</a>
+    <a href="injection-guide.html" class="btn-secondary">💉 View Self-Injection Guide</a>
+    <a href="https://wa.me/639391770511" target="_blank" class="btn-wa">
+      <span style="font-size:22px;">💬</span>
+      <span>Ask us on WhatsApp — +63 939 177 0511</span>
+    </a>
+  </div>
+
+  <p class="footer-note">🔒 All information is strictly confidential · © MedGlow Wellness · All rights reserved</p>
+</div>
+</body>
+</html>
